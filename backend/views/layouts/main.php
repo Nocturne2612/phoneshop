@@ -64,10 +64,7 @@ AppAsset::register($this);
           </li>
           <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="<?php echo Yii::$app->homeUrl . 'group' ?>">Nhóm danh mục</a></li>
               <li><a href="<?php echo Yii::$app->homeUrl . 'category' ?>">Danh mục</a></li>
-              <li><a href="<?php echo Yii::$app->homeUrl . 'product' ?>">Thêm Sản Phẩm</a></li>
-              <li><a href="<?php echo Yii::$app->homeUrl . 'file' ?>">Quản Lí File</a></li>
 
           </ul>
       </li>
