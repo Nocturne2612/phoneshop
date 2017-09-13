@@ -61,6 +61,7 @@ AppAsset::register($this);
                     <li><a href="<?php echo Yii::$app->homeUrl . 'category' ?>">Danh mục</a></li>
                     <li><a href="<?php echo Yii::$app->homeUrl . 'product' ?>">Thêm Sản Phẩm</a></li>
                     <li><a href="<?php echo Yii::$app->homeUrl . 'file' ?>">Quản Lí File</a></li>
+                    <li><a href="<?php echo Yii::$app->homeUrl . 'newCat' ?>">Tin Tức</a></li>
                   </ul>
                 </li>
               </ul>
