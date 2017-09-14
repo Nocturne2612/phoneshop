@@ -16,67 +16,102 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-  <meta charset="<?= Yii::$app->charset ?>">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <?= Html::csrfMetaTags() ?>
-  <title><?= Html::encode($this->title) ?></title>
-  <?php $this->head() ?>
+<meta charset="<?= Yii::$app->charset ?>">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<?= Html::csrfMetaTags() ?>
+<title><?= Html::encode($this->title) ?></title>
+<?php $this->head() ?>
 </head>
 <body class="nav-md">
-  <?php $this->beginBody() ?>
+<?php $this->beginBody() ?>
 
-  <div class="container body">
-    <div class="main_container">
-      <div class="col-md-3 left_col">
-        <div class="left_col scroll-view">
-          <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+<div class="container body">
+  <div class="main_container">
+    <div class="col-md-3 left_col">
+      <div class="left_col scroll-view">
+        <div class="navbar nav_title" style="border: 0;">
+          <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Phone Shop</span></a>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <!-- menu profile quick info -->
+        <div class="profile clearfix">
+          <div class="profile_pic">
+            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
           </div>
-
-          <div class="clearfix"></div>
-
-          <!-- menu profile quick info -->
-          <div class="profile clearfix">
-            <div class="profile_pic">
-              <img src="images/img.jpg" alt="..." class="img-circle profile_img">
-            </div>
-            <div class="profile_info">
-              <span>Welcome,</span>
-              <h2>John Doe</h2>
-            </div>
+          <div class="profile_info">
+            <span>Welcome,</span>
+            <h2>John Doe</h2>
           </div>
-          <!-- /menu profile quick info -->
+        </div>
+        <!-- /menu profile quick info -->
 
-          <br />
+        <br />
 
-          <!-- sidebar menu -->
-          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-            <div class="menu_section">
-              <h3>General</h3>
-              <ul class="nav side-menu">
-                <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu">
-                    <li><a href="<?php echo Yii::$app->homeUrl . 'group' ?>">Nhóm danh mục</a></li>
-                    <li><a href="<?php echo Yii::$app->homeUrl . 'category' ?>">Danh mục</a></li>
-                    <li><a href="<?php echo Yii::$app->homeUrl . 'product' ?>">Thêm Sản Phẩm</a></li>
-                    <li><a href="<?php echo Yii::$app->homeUrl . 'file' ?>">Quản Lí File</a></li>
+        <!-- sidebar menu -->
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+          <div class="menu_section">
+            <h3><i class="fa fa-edit"></i> Sản Phẩm - Hình Ảnh</h3>
+            <ul class="nav side-menu">
+              <li>
+                <a><i class="fa fa-sitemap"></i> Sản Phẩm <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                  <li>
+                    <a href="<?php echo Yii::$app->homeUrl . 'factory/index' ?>">Thương hiệu</a>
+                  </li>
+                  <li>
+                    <a href="<?php echo Yii::$app->homeUrl . 'category/index' ?>">Danh mục</a>
+                  </li>
+                  <li>
+                    <a href="<?php echo Yii::$app->homeUrl . 'product/index' ?>">Sản Phẩm</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+              <a><i class="fa fa-picture-o"></i> Hình Ảnh - Banner <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                  <li>
+                    <a href="<?php echo Yii::$app->homeUrl . 'image/index' ?>">Hình ảnh</a>
+                  </li>
+                  <li>
+                    <a href="<?php echo Yii::$app->homeUrl . 'banner/index' ?>">Banner</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="menu_section">
+            <h3><i class="fa fa-gears"></i> Quản Trị</h3>
+            <ul class="nav side-menu">
+              <li>
+                <a><i class="fa fa-users"></i> Tài Khoản <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                  <li><a href="<?php echo Yii::$app->homeUrl . 'permission/index' ?>">Danh sách quyền</a></li>
+                  <li><a href="<?php echo Yii::$app->homeUrl . 'userlist/index' ?>">Danh sách nhóm tài khoản</a></li>
+                  <li><a href="<?php echo Yii::$app->homeUrl . 'user/index' ?>">Danh sách tài khoản</a></li>
+                  
+                </ul>
+              </li>
+              <li>
+                <a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                  <li><a href="#level1_1">Level One</a>
+                    <li><a>Level One<span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li class="sub_menu"><a href="level2.html">Level Two</a>
+                        </li>
+                        <li><a href="#level2_1">Level Two</a>
+                        </li>
+                        <li><a href="#level2_2">Level Two</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li><a href="#level1_2">Level One</a>
+                    </li>
                   </ul>
-                </li>
-              </ul>
-            </div>
-            <div class="menu_section">
-              <h3>Live On</h3>
-              <ul class="nav side-menu">
-                <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu">
-                    <li><a href="e_commerce.html">E-commerce</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="project_detail.html">Project Detail</a></li>
-                    <li><a href="contacts.html">Contacts</a></li>
-                    <li><a href="profile.html">Profile</a></li>
-                  </ul>
-                </li>
+                </li> 
               </ul>
             </div>
 
@@ -148,42 +183,6 @@ AppAsset::register($this);
                     </a>
                   </li>
                   <li>
-                    <a>
-                      <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                      <span>
-                        <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                      <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                      <span>
-                        <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                      <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                      <span>
-                        <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                      </span>
-                    </a>
-                  </li>
-                  <li>
                     <div class="text-center">
                       <a>
                         <strong>See All Alerts</strong>
@@ -211,12 +210,12 @@ AppAsset::register($this);
         <!-- /page content -->
 
         <!-- footer content -->
-        <footer>
+        <!-- <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            Phone Shop ------------ Copyright - Phạm Duy Tân
           </div>
           <div class="clearfix"></div>
-        </footer>
+        </footer> -->
         <!-- /footer content -->
       </div>
     </div>
