@@ -53,7 +53,7 @@ AppAsset::register($this);
           <!-- sidebar menu -->
           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
-              <h3><i class="fa fa-edit"></i> Sản Phẩm - Hình Ảnh</h3>
+            <h3><i class="fa fa-edit"></i> Sản Phẩm - Tin Tức</h3>
               <ul class="nav side-menu">
                 <li>
                   <a><i class="fa fa-sitemap"></i> Sản Phẩm <span class="fa fa-chevron-down"></span></a>
@@ -77,6 +77,17 @@ AppAsset::register($this);
                     </li>
                     <li>
                       <a href="<?php echo Yii::$app->homeUrl . 'banner/index' ?>">Banner</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a><i class="fa fa-newspaper-o"></i> Tin Tức <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <a href="<?php echo Yii::$app->homeUrl . 'newscat/index' ?>">Danh mục tin tức</a>
+                    </li>
+                    <li>
+                      <a href="<?php echo Yii::$app->homeUrl . 'news/index' ?>">Tin tức chi tiết</a>
                     </li>
                   </ul>
                 </li>
