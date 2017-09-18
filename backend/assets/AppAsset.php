@@ -45,7 +45,7 @@ class AppAsset extends AssetBundle
         'vendors/bootstrap-daterangepicker/daterangepicker.js',
         'build/js/custom.min.js',
         'js/jquery-ui.js',
-        'tinymce/tinymce.min.js',
+        'tinymce/js/tinymce/tinymce.min.js',
         'js/main.js'
     ];
     public $depends = [

@@ -49,4 +49,17 @@ class Category extends \yii\db\ActiveRecord
             'dateCreate' => 'Date Create',
         ];
     }
+    public $data;
+    public function getCategoryParent($parent=0,$level=""){
+        $result=Category::find()->asArray()->where('parentId = :parent',['parent'=>$parent])->all();
+        $level.="-";
+        foreach ($result as $key => $value) {
+            if($parent==0){
+                $level="";
+            }
+            $this->data[$value["catId"]] = $level . $value["catName"];
+            self::getCategoryParent($value["catId"],$level);// đệ qui gọi lại hàm chính nó
+        }
+        return $this->data;
+    }
 }

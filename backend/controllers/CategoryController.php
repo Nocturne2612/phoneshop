@@ -65,15 +65,25 @@ class CategoryController extends Controller
     public function actionCreate()
     {
         $model = new Category();
-
+        $dataCat= $model->getCategoryParent();
+        if(empty($dataCat))
+            $dataCat=array();
+        // echo "<pre>";
+        // print_r($model);
+        // die();
 
         $time=time();
+        // echo(date("Y-m-d",$time));
+        // die();
         $model->dateCreate= $time;
+
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->catId]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'dataCat'=>$dataCat,
             ]);
         }
     }
@@ -87,12 +97,17 @@ class CategoryController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $dataCat= $model->getCategoryParent();
+        if(empty($dataCat))
+        $dataCat=array();
+        $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->catId]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'dataCat'=>$dataCat,
             ]);
         }
     }

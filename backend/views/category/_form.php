@@ -14,12 +14,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'catName')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'parentId')->textInput() ?>
-    
+    <?= $form->field($model, 'parentId')->dropDownList($dataCat,['prompt'=>"-Chọn nhóm danh mục-"]) ?>
 
     <?= $form->field($model, 'status')->checkbox() ?>
 
-    
+
+
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
