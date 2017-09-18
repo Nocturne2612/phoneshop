@@ -18,6 +18,7 @@ class AppAsset extends AssetBundle
         'vendors/bootstrap-daterangepicker/daterangepicker.css',
         'build/css/custom.min.css',
         'css/jquery-ui.css',
+        'css/main.css',
     ];
     public $js = [
         'vendors/jquery/dist/jquery.min.js',

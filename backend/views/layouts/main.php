@@ -139,7 +139,7 @@ AppAsset::register($this);
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html"
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>
@@ -170,7 +170,21 @@ AppAsset::register($this);
                       </a>
                     </li>
                     <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="javascript:;">
+
+                    <?php 
+                      echo Html::beginForm(['/site/logout'], 'post');
+                      echo Html::submitButton(
+                        'Logout (' . Yii::$app->user->identity->username . ')',
+                        ['class' => 'fixLogout']
+                      );
+                      echo Html::endForm();
+
+
+                     ?>
+                      <!-- <a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a> -->
+                    
+                    </a></li>
                   </ul>
                 </li>
 
