@@ -5,12 +5,12 @@ namespace backend\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Category;
+use backend\models\NewsCategory;
 
 /**
- * CategorySearch represents the model behind the search form about `backend\models\Category`.
+ * NewsCategorySearch represents the model behind the search form about `backend\models\NewsCategory`.
  */
-class CategorySearch extends Category
+class NewsCategorySearch extends NewsCategory
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class CategorySearch extends Category
     public function rules()
     {
         return [
-            [['catId', 'parentId', 'status', 'dateCreate'], 'integer'],
-            [['catName'], 'safe'],
+            [['newsCatId', 'parentId', 'status', 'dateCreate','updateAt'], 'integer'],
+            [['newsCatName'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class CategorySearch extends Category
      */
     public function search($params)
     {
-        $query = Category::find();
+        $query = NewsCategory::find();
 
         // add conditions that should always apply here
 
@@ -59,13 +59,14 @@ class CategorySearch extends Category
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'catId' => $this->catId,
+            'newsCatId' => $this->newsCatId,
             'parentId' => $this->parentId,
             'status' => $this->status,
             'dateCreate' => $this->dateCreate,
+            'updateAt' => $this->updateAt,
         ]);
 
-        $query->andFilterWhere(['like', 'catName', $this->catName]);
+        $query->andFilterWhere(['like', 'newsCatName', $this->newsCatName]);
 
         return $dataProvider;
     }

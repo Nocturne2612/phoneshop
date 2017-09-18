@@ -59,13 +59,13 @@ AppAsset::register($this);
                   <a><i class="fa fa-sitemap"></i> Sản Phẩm <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li>
-                      <a href="<?php echo Yii::$app->homeUrl . 'factory/index' ?>">Thương hiệu</a>
+                      <a href="<?php echo Yii::$app->homeUrl . 'factory' ?>">Thương hiệu</a>
                     </li>
                     <li>
-                      <a href="<?php echo Yii::$app->homeUrl . 'category/index' ?>">Danh mục</a>
+                      <a href="<?php echo Yii::$app->homeUrl . 'category' ?>">Danh mục sản phẩm</a>
                     </li>
                     <li>
-                      <a href="<?php echo Yii::$app->homeUrl . 'product/index' ?>">Sản Phẩm</a>
+                      <a href="<?php echo Yii::$app->homeUrl . 'product' ?>">Sản phẩm</a>
                     </li>
                   </ul>
                 </li>
@@ -73,10 +73,10 @@ AppAsset::register($this);
                   <a><i class="fa fa-picture-o"></i> Hình Ảnh - Banner <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li>
-                      <a href="<?php echo Yii::$app->homeUrl . 'image/index' ?>">Hình ảnh</a>
+                      <a href="<?php echo Yii::$app->homeUrl . 'image' ?>">Hình ảnh</a>
                     </li>
                     <li>
-                      <a href="<?php echo Yii::$app->homeUrl . 'banner/index' ?>">Banner</a>
+                      <a href="<?php echo Yii::$app->homeUrl . 'banner' ?>">Banner</a>
                     </li>
                   </ul>
                 </li>
@@ -84,10 +84,10 @@ AppAsset::register($this);
                   <a><i class="fa fa-newspaper-o"></i> Tin Tức <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li>
-                      <a href="<?php echo Yii::$app->homeUrl . 'newscat/index' ?>">Danh mục tin tức</a>
+                      <a href="<?php echo Yii::$app->homeUrl . 'news-category' ?>">Danh mục tin tức</a>
                     </li>
                     <li>
-                      <a href="<?php echo Yii::$app->homeUrl . 'news/index' ?>">Tin tức chi tiết</a>
+                      <a href="<?php echo Yii::$app->homeUrl . 'news' ?>">Tin tức</a>
                     </li>
                   </ul>
                 </li>
@@ -99,9 +99,9 @@ AppAsset::register($this);
                 <li>
                   <a><i class="fa fa-users"></i> Tài Khoản <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                    <li><a href="<?php echo Yii::$app->homeUrl . 'permission/index' ?>">Danh sách quyền</a></li>
-                    <li><a href="<?php echo Yii::$app->homeUrl . 'userlist/index' ?>">Danh sách nhóm tài khoản</a></li>
-                    <li><a href="<?php echo Yii::$app->homeUrl . 'user/index' ?>">Danh sách tài khoản</a></li>
+                    <li><a href="<?php echo Yii::$app->homeUrl . 'permission' ?>">Danh sách quyền</a></li>
+                    <li><a href="<?php echo Yii::$app->homeUrl . 'userlist' ?>">Danh sách nhóm tài khoản</a></li>
+                    <li><a href="<?php echo Yii::$app->homeUrl . 'user' ?>">Danh sách tài khoản</a></li>
                   </ul>
                 </li>
                 <li>
