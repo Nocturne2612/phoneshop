@@ -18,6 +18,7 @@ class m170914_040349_News_category extends Migration
             'parentId' => $this->integer()->notNull(),
             'status' => $this->smallInteger()->notNull()->defaultValue(1),
             'dateCreate' => $this->integer()->notNull(),
+            'updateAt' => $this->integer()->notNull(),
         ], $tableOptions);
     }
 
