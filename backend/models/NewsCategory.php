@@ -13,24 +13,22 @@ use Yii;
  * @property integer $status
  * @property integer $dateCreate
  */
-class NewsCategory extends \yii\db\ActiveRecord
-{
+class NewsCategory extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'news_category';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['newsCatName', 'parentId'], 'required', 'message' => '{attribute} không được để trống'],
-            [['parentId', 'status', 'dateCreate','updateAt'], 'integer'],
+            [['newsCatName'], 'required', 'message' => '{attribute} không được để trống'],
+            [['parentId', 'status', 'dateCreate', 'updateAt'], 'integer'],
             [['newsCatName'], 'string', 'max' => 255],
             [['newsCatName'], 'unique'],
         ];
@@ -39,8 +37,7 @@ class NewsCategory extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'newsCatId' => 'ID',
             'newsCatName' => 'Danh mục tin tức',
@@ -51,12 +48,31 @@ class NewsCategory extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getNewsCategory()
-    {
-        $list = NewsCategory::find()
-//            ->where(['status' => '1'])
-            -> asArray()
-            ->all();
-        return $list;
+    public $data;
+
+    public function getNewsCategory($parent = null, $level = "") {
+
+        if ($parent == null) {
+
+            $result = NewsCategory::find()
+                    ->where(['is', 'parentId', null])
+                    ->asArray()
+                    ->all();
+        } else {
+            $result = NewsCategory::find()
+                    ->where('parentId = :parent', ['parent' => $parent])
+                    ->asArray()
+                    ->all();
+        }
+        $level .= "|--";
+        foreach ($result as $key => $value) {
+            if ($parent == 0) {
+                $level = "";
+            }
+            $this->data[$value["newsCatId"]] = $level . $value["newsCatName"];
+            self::getNewsCategory($value["newsCatId"], $level); // đệ quy gọi lại hàm chính nó
+        }
+        return $this->data;
     }
+
 }

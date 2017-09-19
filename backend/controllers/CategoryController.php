@@ -13,13 +13,12 @@ use yii\helpers\ArrayHelper;
 /**
  * CategoryController implements the CRUD actions for Category model.
  */
-class CategoryController extends Controller
-{
+class CategoryController extends Controller {
+
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -34,14 +33,13 @@ class CategoryController extends Controller
      * Lists all Category models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $searchModel = new CategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -50,10 +48,9 @@ class CategoryController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),
         ]);
     }
 
@@ -62,28 +59,22 @@ class CategoryController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new Category();
-        $dataCat= $model->getCategoryParent();
-        if(empty($dataCat))
-            $dataCat=array();
-        // echo "<pre>";
-        // print_r($model);
-        // die();
+        $dataCat = $model->getCategoryParent();
+        if (empty($dataCat))
+            $dataCat = array();
+        $time = time();
 
-        $time=time();
-        // echo(date("Y-m-d",$time));
-        // die();
-        $model->dateCreate= $time;
+        $model->dateCreate = $time;
 
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->catId]);
         } else {
             return $this->render('create', [
-                'model' => $model,
-                'dataCat'=>$dataCat,
+                        'model' => $model,
+                        'dataCat' => $dataCat,
             ]);
         }
     }
@@ -94,20 +85,19 @@ class CategoryController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModel($id);
-        $dataCat= $model->getCategoryParent();
-        if(empty($dataCat))
-        $dataCat=array();
+        $dataCat = $model->getCategoryParent();
+        if (empty($dataCat))
+            $dataCat = array();
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->catId]);
         } else {
             return $this->render('update', [
-                'model' => $model,
-                'dataCat'=>$dataCat,
+                        'model' => $model,
+                        'dataCat' => $dataCat,
             ]);
         }
     }
@@ -118,8 +108,7 @@ class CategoryController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -132,12 +121,12 @@ class CategoryController extends Controller
      * @return Category the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = Category::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }

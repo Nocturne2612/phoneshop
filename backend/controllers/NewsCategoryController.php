@@ -65,14 +65,10 @@ class NewsCategoryController extends Controller
     public function actionCreate()
     {
         $model = new NewsCategory();
-        $data= ArrayHelper:: map($model->getNewsCategory(),'newsCatId','newsCatName');
-//        $list = $model->getNewsCategory();
-//        echo "<pre>";
-//        print_r($list); die;
-//        $data = array();
-//        foreach ($list as $value) {
-//            $data[$value["newsCatId"]]=$value["newsCatName"];
-//        }
+        $data = $model->getNewsCategory();
+        
+        $time=time();
+        $model->dateCreate= $time;
 
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -95,6 +91,10 @@ class NewsCategoryController extends Controller
     {
         $model = $this->findModel($id);
         $data = $model->getNewsCategory();
+        $time=time();
+        // echo(date("Y-m-d",$time));
+        // die();
+        $model->updateAt= $time;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->newsCatId]);

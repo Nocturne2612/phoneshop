@@ -34,7 +34,7 @@ class News extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['newsCatId', 'userId', 'name', 'summary', 'content', 'dateCreate', 'updateAt'], 'required'],
+            [[ 'userId', 'name', 'summary', 'content'], 'required','message' => '{attribute} không được để trống'],
             [['newsCatId', 'userId', 'status', 'dateCreate', 'updateAt'], 'integer'],
             [['name', 'image', 'summary', 'content'], 'string', 'max' => 255],
             [['name'], 'unique'],
@@ -47,16 +47,16 @@ class News extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'newsId' => 'News ID',
-            'newsCatId' => 'News Cat ID',
-            'userId' => 'User ID',
-            'name' => 'Name',
-            'image' => 'Image',
-            'summary' => 'Summary',
-            'content' => 'Content',
-            'status' => 'Status',
-            'dateCreate' => 'Date Create',
-            'updateAt' => 'Update At',
+            'newsId' => 'ID',
+            'newsCatId' => 'Danh mục',
+            'userId' => 'Tác giả',
+            'name' => 'Tên bài viết',
+            'image' => 'Hình ảnh',
+            'summary' => 'Mô tả',
+            'content' => 'Nội dung',
+            'status' => 'Trạng thái',
+            'dateCreate' => 'Ngày tạo',
+            'updateAt' => 'Ngày sửa',
         ];
     }
 }

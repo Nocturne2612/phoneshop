@@ -4,10 +4,12 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\News;
+use backend\models\NewsCategory;
 use backend\models\search\NewsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * NewsController implements the CRUD actions for News model.
@@ -64,12 +66,15 @@ class NewsController extends Controller
     public function actionCreate()
     {
         $model = new News();
+        $get = new NewsCategory();
+        $data= ArrayHelper:: map($get->getNewsCategory(),'newsCatId','newsCatName');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->newsId]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'data' => $data,
             ]);
         }
     }
@@ -83,6 +88,8 @@ class NewsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model = new NewsCategory();
+        $data= ArrayHelper:: map($model->getNewsCategory(),'newsCatId','newsCatName');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->newsId]);
