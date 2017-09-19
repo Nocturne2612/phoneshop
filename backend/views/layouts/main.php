@@ -4,10 +4,10 @@
 
 use backend\assets\AppAsset;
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
+//use yii\bootstrap\Nav;
+//use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use common\widgets\Alert;
+//use common\widgets\Alert;
 
 AppAsset::register($this);
 ?>
@@ -30,7 +30,7 @@ AppAsset::register($this);
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Phone Shop</span></a>
+                            <a href="<?= Yii::$app->homeUrl?>" class="site_title"><i class="fa fa-paw"></i> <span>Phone Shop</span></a>
                         </div>
 
                         <div class="clearfix"></div>
@@ -38,13 +38,14 @@ AppAsset::register($this);
                         <!-- menu profile quick info -->
                         <div class="profile clearfix">
                             <div class="profile_pic">
-                                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                                <img src="<?= Yii::$app->homeUrl.'images/img.jpg'?>" alt="..." class="img-circle profile_img">
                             </div>
                             <div class="profile_info">
                                 <span>Welcome,</span>
                                 <h2>John Doe</h2>
                             </div>
                         </div>
+
                         <!-- /menu profile quick info -->
 
                         <br />
@@ -128,7 +129,7 @@ AppAsset::register($this);
                         <!-- /sidebar menu -->
 
                         <!-- /menu footer buttons -->
-                        <div class="sidebar-footer hidden-small">
+<!--                        <div class="sidebar-footer hidden-small">
                             <a data-toggle="tooltip" data-placement="top" title="Settings">
                                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                             </a>
@@ -138,10 +139,10 @@ AppAsset::register($this);
                             <a data-toggle="tooltip" data-placement="top" title="Lock">
                                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                             </a>
-                            <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                            <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html"
+                               <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                             </a>
-                        </div>
+                        </div>-->
                         <!-- /menu footer buttons -->
                     </div>
                 </div>
@@ -169,10 +170,18 @@ AppAsset::register($this);
                                             </a>
                                         </li>
                                         <li><a href="javascript:;">Help</a></li>
+                                        <li><a href="javascript:;">
 
-                                        <li>
-                                            <a href=""><i class="fa fa-sign-out pull-right"></i> Log Out</a>
-                                        </li>
+                                                <?php
+                                                echo Html::beginForm(['/site/logout'], 'post');
+                                                echo Html::submitButton(
+                                                        'Logout (' . Yii::$app->user->identity->username . ')', ['class' => 'fixLogout']
+                                                );
+                                                echo Html::endForm();
+                                                ?>
+                      <!-- <a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a> -->
+
+                                            </a></li>
                                     </ul>
                                 </li>
 
@@ -224,7 +233,7 @@ AppAsset::register($this);
                 <!-- /page content -->
 
                 <!-- footer content -->
-                <!-- <footer>
+<!--                 <footer>
                   <div class="pull-right">
                     Phone Shop ------------ Copyright - Phạm Duy Tân
                   </div>
