@@ -5,7 +5,7 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Category;
 use backend\models\Product;
-use backend\models\ProductSearch;
+use backend\models\search\ProductSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
