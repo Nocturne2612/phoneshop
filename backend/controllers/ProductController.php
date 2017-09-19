@@ -9,7 +9,7 @@ use backend\models\search\ProductSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\helpers\ArrayHelper;
 /**
  * ProductController implements the CRUD actions for Product model.
  */
@@ -77,6 +77,29 @@ class ProductController extends Controller
 
         $time=time();
         $model->dateCreate= $time;
+        if(Yii::$app->request->post()){
+            // echo "<pre>";
+            // print_r(Yii::$app->request->post());
+            // die();
+            $xx=(Yii::$app->request->post());
+            $b=ArrayHelper::getValue($xx,"Product.startSale");
+
+            // $b=$xx[Product][startSale];
+            // echo "<pre>";
+            // print_r($b);
+            // die();
+            $c=date_create($b);
+
+            $c=date_format($c,"Y/m/d");
+            $b=$c;
+            echo "<pre>";
+            print_r($xx);
+            die();
+
+
+
+            // die();
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->proId]);
         } else {
