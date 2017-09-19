@@ -77,8 +77,17 @@ class ProductController extends Controller
 
         $time=time();
         $model->dateCreate= $time;
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->proId]);
+//        if(Yii::$app->request->post()){
+//            echo "<pre>";
+//            print_r(Yii::$app->request->post());
+//            die;
+//        }
+        if ($model->load(Yii::$app->request->post()) ) {
+            $data = Yii::$app->request->post();
+            $model->startSale = date("Y-m-d",strtotime($data["Product"]["startSale"]));
+            if( $model->save()){
+                return $this->redirect(['view', 'id' => $model->proId]);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,

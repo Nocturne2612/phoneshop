@@ -64,9 +64,13 @@ class NewsCategory extends \yii\db\ActiveRecord {
                     ->asArray()
                     ->all();
         }
+
         $level .= "|--";
         foreach ($result as $key => $value) {
-            if ($parent == 0) {
+//            echo "<pre>";
+//            var_dump($value);
+//            die;
+            if ($parent == null) {
                 $level = "";
             }
             $this->data[$value["newsCatId"]] = $level . $value["newsCatName"];
