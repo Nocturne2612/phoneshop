@@ -18,15 +18,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'factoryId')->textInput() ?>
 
-    <?= $form->field($model, 'images')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'images')->textInput(['maxlength' => true,'id'=>"imageFile",'placeholder'=>'click chọn ảnh']) ?>
 
     <?= $form->field($model, 'price')->textInput() ?>
 
     <?= $form->field($model, 'saleOf')->textInput() ?>
 
-    <?= $form->field($model, 'startSale')->textInput() ?>
+    <?= $form->field($model, 'startSale')->textInput(['id'=>"startSale"]) ?>
 
-    <?= $form->field($model, 'endSale')->textInput() ?>
+    <?= $form->field($model, 'endSale')->textInput(['id'=>"endSale"]) ?>
 
     <?= $form->field($model, 'color')->textInput(['maxlength' => true]) ?>
 

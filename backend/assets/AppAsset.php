@@ -47,7 +47,8 @@ class AppAsset extends AssetBundle
         'build/js/custom.min.js',
         'js/jquery-ui.js',
         'tinymce/js/tinymce/tinymce.min.js',
-        'js/main.js'
+        'js/main.js',
+        'js/main2.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

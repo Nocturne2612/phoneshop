@@ -1,11 +1,11 @@
 var host = window.location.href;//backend
 host = host.split("backend");
 $(document).ready(function(){
-	$("#product-startsale").datepicker({
-		 dateFormat: "yy-mm-dd"
+	$("#startSale").datepicker({
+		 // dateFormat: "yy-mm-dd"
 	});
-	$("#product-endsale").datepicker({
-		 dateFormat: "dd-mm-yy"
+	$("#endSale").datepicker({
+		 // dateFormat: "dd-mm-yy"
 	});
 });
 
@@ -27,9 +27,9 @@ $(document).ready(function(){
     toolbar_items_size: 'small',
     relative_urls: false,
     remove_script_host : false,
-        external_filemanager_path:host[0]+"file/",
+      external_filemanager_path:host[0]+"fileDes/",
     	filemanager_title:"Quan ly file" ,
-   		external_plugins: { "filemanager" : host[0]+"file/plugin.min.js"},
+   		external_plugins: { "filemanager" : host[0]+"fileDes/plugin.min.js"},
     	//filemanager_access_key:csrf(),
     });
 
@@ -65,18 +65,8 @@ tinymce.init({
 
 
 	jQuery(document).ready(function($) {
-		//$('#imageFile').click(function() {
-			//$('#media-modal').modal('show');
-			// $('input#image').attr('value','sรก');;
-			// $('#media-modal').on('hide.bs.modal',function(){
-			// 	var imgUrrl = $('#image').val();
-			// 	$('img#show-img').attr('src',imgUrrl);
-			// 	$('input#image').attr('value',imgUrrl);;
-			// 	// alert(imgUrrl);
-			// });
-		//});
-
 		 $('#imageFile').click(function() {
 		 	$('#media-modal').modal('show');
+      // alert("âff");
 		});
 	});
