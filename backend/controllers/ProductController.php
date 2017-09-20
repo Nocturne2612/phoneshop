@@ -135,12 +135,12 @@ class ProductController extends Controller
      */
     public function actionUpdate($id)
     {
-        if($model = $this->findModel($id)){
-             $data= $this->findModel($id);
-             $model->startSale = date("d-m-Y",strtotime($data["startSale"]));
-             $model->endSale = date("d-m-Y",strtotime($data["startSale"]));
+            $model = $this->findModel($id);
+            $data= $this->findModel($id);
+            $model->startSale = date("d-m-Y",strtotime($data["startSale"]));
+            $model->endSale = date("d-m-Y",strtotime($data["startSale"]));
 
-        }
+        
         
         $modelCat = new Category();
 
@@ -150,9 +150,9 @@ class ProductController extends Controller
 
         if ($model->load(Yii::$app->request->post()) ) 
         {
-            $data = Yii::$app->request->post();
-            $model->startSale = date("Y-m-d",strtotime($data["Product"]["startSale"])); // đổi về định dạng d-m-y
-            $model->endSale = date("Y-m-d",strtotime($data["Product"]["startSale"]));
+            // $data = Yii::$app->request->post();
+            // $model->startSale = date("Y-m-d",strtotime($data["Product"]["startSale"])); // đổi về định dạng d-m-y
+            // $model->endSale = date("Y-m-d",strtotime($data["Product"]["startSale"]));
 
             $model->save();
             
