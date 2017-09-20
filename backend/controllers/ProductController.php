@@ -9,17 +9,18 @@ use backend\models\search\ProductSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\helpers\ArrayHelper;
+
+//use yii\helpers\ArrayHelper;
+
 /**
  * ProductController implements the CRUD actions for Product model.
  */
-class ProductController extends Controller
-{
+class ProductController extends Controller {
+
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -34,14 +35,13 @@ class ProductController extends Controller
      * Lists all Product models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -50,10 +50,9 @@ class ProductController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),
         ]);
     }
 
@@ -62,67 +61,28 @@ class ProductController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new Product();
         $modelCat = new Category();
+        $data = $modelCat->getCategoryParent();
+        if (empty($data)) {
+            $data = array();
+        }
+        $time = time();
+        $model->dateCreate = $time;
 
-        $data= $modelCat->getCategoryParent();
-        if(empty($data))
-            $data=array();
-
-        // echo "<pre>";
-        // print_r($model);
-        // die();
-
-        $time=time();
-        $model->dateCreate= $time;
-
-        // if(Yii::$app->request->post()){
-        //     // echo "<pre>";
-        //     // print_r(Yii::$app->request->post());
-        //     // die();
-        //     $xx=(Yii::$app->request->post());
-        //     $b=ArrayHelper::getValue($xx,"Product.startSale");
-
-        //     // $b=$xx[Product][startSale];
-        //     // echo "<pre>";
-        //     // print_r($b);
-        //     // die();
-        //     $c=date_create($b);
-
-        //     $c=date_format($c,"Y/m/d");
-        //     $b=$c;
-        //     echo "<pre>";
-        //     print_r($xx);
-        //     die();
-
-
-
-        //     // die();
-        // }
-//         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-//             return $this->redirect(['view', 'id' => $model->proId]);
-
-// //        if(Yii::$app->request->post()){
-// //            echo "<pre>";
-// //            print_r(Yii::$app->request->post());
-// //            die;
-// //        }
-        if ($model->load(Yii::$app->request->post()) ) 
-        {
+        if ($model->load(Yii::$app->request->post())) {
             $data = Yii::$app->request->post();
-            $model->startSale = date("Y-m-d",strtotime($data["Product"]["startSale"])); // đổi về định dạng Y-m-d mới lưu đc vào trong db
-            $model->endSale = date("Y-m-d",strtotime($data["Product"]["startSale"]));
+            $model->startSale = date("Y-m-d", strtotime($data["Product"]["startSale"])); // đổi về định dạng Y-m-d mới lưu đc vào trong db
+            $model->endSale = date("Y-m-d", strtotime($data["Product"]["endSale"]));
 
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->proId]);
-            
-        } 
-        else {
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->proId]);
+            }
+        } else {
             return $this->render('create', [
-                'model' => $model,
-                'data'=>$data,
+                        'model' => $model,
+                        'data' => $data,
             ]);
         }
     }
@@ -133,36 +93,32 @@ class ProductController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
-            $model = $this->findModel($id);
-            $data= $this->findModel($id);
-            $model->startSale = date("d-m-Y",strtotime($data["startSale"]));
-            $model->endSale = date("d-m-Y",strtotime($data["startSale"]));
 
         
-        
+
+    public function actionUpdate($id) {
+        $model = $this->findModel($id);
+        $model->startSale = date("d-m-Y", strtotime($model["startSale"]));
+        $model->endSale = date("d-m-Y", strtotime($model["endSale"]));
+
         $modelCat = new Category();
 
-        $data= $modelCat->getCategoryParent();
-        if(empty($data))
-            $data=array();
+        $data = $modelCat->getCategoryParent();
+        if (empty($data)) {
+            $data = array();
+        }
 
-        if ($model->load(Yii::$app->request->post()) ) 
-        {
-            // $data = Yii::$app->request->post();
-            // $model->startSale = date("Y-m-d",strtotime($data["Product"]["startSale"])); // đổi về định dạng d-m-y
-            // $model->endSale = date("Y-m-d",strtotime($data["Product"]["startSale"]));
+        if ($model->load(Yii::$app->request->post())) {
+            $data = Yii::$app->request->post();
+            $model->startSale = date("Y-m-d", strtotime($data["Product"]["startSale"])); // đổi về định dạng d-m-y
+            $model->endSale = date("Y-m-d", strtotime($data["Product"]["endSale"]));
 
             $model->save();
-            
             return $this->redirect(['view', 'id' => $model->proId]);
-        } 
-        else 
-        {
+        } else {
             return $this->render('update', [
-                'model' => $model,
-                'data'=>$data,
+                        'model' => $model,
+                        'data' => $data,
             ]);
         }
     }
@@ -173,8 +129,7 @@ class ProductController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -187,12 +142,12 @@ class ProductController extends Controller
      * @return Product the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = Product::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }

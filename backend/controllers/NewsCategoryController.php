@@ -66,8 +66,8 @@ class NewsCategoryController extends Controller
         $model = new NewsCategory();
         $data = $model->getNewsCategory();
         
-        $time=time();
-        $model->dateCreate= $time;
+//        $time=time();
+        $model->dateCreate= date ("Y-m-d", $timestamp = 'time()');
 
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
