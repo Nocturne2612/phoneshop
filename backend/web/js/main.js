@@ -2,10 +2,10 @@ var host = window.location.href;//backend
 host = host.split("backend");
 $(document).ready(function(){
 	$("#startSale").datepicker({
-		 // dateFormat: "yy-mm-dd"
+		 dateFormat: "dd-mm-yy"
 	});
 	$("#endSale").datepicker({
-		 // dateFormat: "dd-mm-yy"
+		 dateFormat: "dd-mm-yy"
 	});
 });
 

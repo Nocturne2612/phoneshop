@@ -10,6 +10,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+//use yii\helpers\ArrayHelper;
+
 /**
  * ProductController implements the CRUD actions for Product model.
  */
@@ -62,26 +64,18 @@ class ProductController extends Controller {
     public function actionCreate() {
         $model = new Product();
         $modelCat = new Category();
-
         $data = $modelCat->getCategoryParent();
-        if (empty($data))
+        if (empty($data)) {
             $data = array();
-
-        // echo "<pre>";
-        // print_r($model);
-        // die();
-
+        }
         $time = time();
         $model->dateCreate = $time;
-//        if(Yii::$app->request->post()){
-//            echo "<pre>";
-//            print_r(Yii::$app->request->post());
-//            die;
-//        }
+
         if ($model->load(Yii::$app->request->post())) {
             $data = Yii::$app->request->post();
-            $model->startSale = date("Y-m-d", strtotime($data["Product"]["startSale"]));
+            $model->startSale = date("Y-m-d", strtotime($data["Product"]["startSale"])); // đổi về định dạng Y-m-d mới lưu đc vào trong db
             $model->endSale = date("Y-m-d", strtotime($data["Product"]["endSale"]));
+
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->proId]);
             }
@@ -101,21 +95,24 @@ class ProductController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
-
+        $model->startSale = date("d-m-Y", strtotime($model["startSale"]));
+        $model->endSale = date("d-m-Y", strtotime($model["endSale"]));
 
         $modelCat = new Category();
 
         $data = $modelCat->getCategoryParent();
-        if (empty($data))
+        if (empty($data)) {
             $data = array();
+        }
+
 
         if ($model->load(Yii::$app->request->post())) {
             $data = Yii::$app->request->post();
-            $model->startSale = date("Y-m-d", strtotime($data["Product"]["startSale"]));
+            $model->startSale = date("Y-m-d", strtotime($data["Product"]["startSale"])); // đổi về định dạng d-m-y
             $model->endSale = date("Y-m-d", strtotime($data["Product"]["endSale"]));
-            if ($model->save()) {
-                return $this->redirect(['view', 'id' => $model->proId]);
-            }
+
+            $model->save();
+            return $this->redirect(['view', 'id' => $model->proId]);
         } else {
             return $this->render('update', [
                         'model' => $model,
