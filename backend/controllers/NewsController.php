@@ -5,11 +5,11 @@ namespace backend\controllers;
 use Yii;
 use backend\models\News;
 use backend\models\NewsCategory;
+use backend\models\User;
 use backend\models\search\NewsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\helpers\ArrayHelper;
 
 /**
  * NewsController implements the CRUD actions for News model.
@@ -66,9 +66,17 @@ class NewsController extends Controller
     public function actionCreate()
     {
         $model = new News();
-        $get = new NewsCategory();
-        $data= ArrayHelper:: map($get->getNewsCategory(),'newsCatId','newsCatName');
-
+        $getNewsCategory = new NewsCategory();
+        $data= $getNewsCategory->getNewsCategory();
+//        $User = new User();
+//        $getUser = $User->getAllUser;
+//        $model->userId = ;
+//        echo "<pre>";
+//        var_dump();
+//        die;
+        $time=time();
+        $model->dateCreate= $time;
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->newsId]);
         } else {
@@ -88,14 +96,17 @@ class NewsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $model = new NewsCategory();
-        $data= ArrayHelper:: map($model->getNewsCategory(),'newsCatId','newsCatName');
+        $getNewsCategory = new NewsCategory();
+        $data= $getNewsCategory->getNewsCategory();
+        $time=time();
+        $model->updateAt= $time;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->newsId]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'data' => $data,
             ]);
         }
     }

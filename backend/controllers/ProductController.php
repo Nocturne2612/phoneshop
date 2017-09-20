@@ -77,32 +77,49 @@ class ProductController extends Controller
 
         $time=time();
         $model->dateCreate= $time;
-        if(Yii::$app->request->post()){
-            // echo "<pre>";
-            // print_r(Yii::$app->request->post());
-            // die();
-            $xx=(Yii::$app->request->post());
-            $b=ArrayHelper::getValue($xx,"Product.startSale");
 
-            // $b=$xx[Product][startSale];
-            // echo "<pre>";
-            // print_r($b);
-            // die();
-            $c=date_create($b);
+        // if(Yii::$app->request->post()){
+        //     // echo "<pre>";
+        //     // print_r(Yii::$app->request->post());
+        //     // die();
+        //     $xx=(Yii::$app->request->post());
+        //     $b=ArrayHelper::getValue($xx,"Product.startSale");
 
-            $c=date_format($c,"Y/m/d");
-            $b=$c;
-            echo "<pre>";
-            print_r($xx);
-            die();
+        //     // $b=$xx[Product][startSale];
+        //     // echo "<pre>";
+        //     // print_r($b);
+        //     // die();
+        //     $c=date_create($b);
+
+        //     $c=date_format($c,"Y/m/d");
+        //     $b=$c;
+        //     echo "<pre>";
+        //     print_r($xx);
+        //     die();
 
 
 
-            // die();
-        }
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        //     // die();
+        // }
+//         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//             return $this->redirect(['view', 'id' => $model->proId]);
+
+// //        if(Yii::$app->request->post()){
+// //            echo "<pre>";
+// //            print_r(Yii::$app->request->post());
+// //            die;
+// //        }
+        if ($model->load(Yii::$app->request->post()) ) 
+        {
+            $data = Yii::$app->request->post();
+            $model->startSale = date("Y-m-d",strtotime($data["Product"]["startSale"])); // đổi về định dạng Y-m-d mới lưu đc vào trong db
+            $model->endSale = date("Y-m-d",strtotime($data["Product"]["startSale"]));
+
+            $model->save();
             return $this->redirect(['view', 'id' => $model->proId]);
-        } else {
+            
+        } 
+        else {
             return $this->render('create', [
                 'model' => $model,
                 'data'=>$data,
@@ -118,18 +135,31 @@ class ProductController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        if($model = $this->findModel($id)){
+             $data= $this->findModel($id);
+             $model->startSale = date("d-m-Y",strtotime($data["startSale"]));
+             $model->endSale = date("d-m-Y",strtotime($data["startSale"]));
 
-
+        }
+        
         $modelCat = new Category();
 
         $data= $modelCat->getCategoryParent();
         if(empty($data))
             $data=array();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) ) 
+        {
+            $data = Yii::$app->request->post();
+            $model->startSale = date("Y-m-d",strtotime($data["Product"]["startSale"])); // đổi về định dạng d-m-y
+            $model->endSale = date("Y-m-d",strtotime($data["Product"]["startSale"]));
+
+            $model->save();
+            
             return $this->redirect(['view', 'id' => $model->proId]);
-        } else {
+        } 
+        else 
+        {
             return $this->render('update', [
                 'model' => $model,
                 'data'=>$data,

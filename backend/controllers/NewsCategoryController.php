@@ -8,7 +8,6 @@ use backend\models\search\NewsCategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\helpers\ArrayHelper;
 
 /**
  * NewsCategoryController implements the CRUD actions for NewsCategory model.
