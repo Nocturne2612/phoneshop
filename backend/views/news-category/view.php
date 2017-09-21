@@ -30,10 +30,42 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'newsCatId',
             'newsCatName',
-            'parentId',
-            'status',
-            'dateCreate',
-            'updateAt',
+            [
+                'attribute' => 'parentId',
+                'value' => function ($data) {
+                    if ($data['parentId']!=null) {
+//                       $a = ArrayHelper::map($data, 'parentId', 'newsCatName');
+//                       echo "<pre>";
+//                       var_dump($data);
+//                       die;
+                        return 'not Root';
+                    } else {
+                        return 'Root';
+                    }
+                }
+            ],
+            [
+                'attribute' => 'status',
+//                'contentOptions' => ['class' => 'label label-blue'],
+                'value' => function ($data) {
+                    $result = ($data['status'] == 0) ? 'Không hoạt động' : 'Đang hoạt động';
+                    return $result;
+                }
+            ],
+            [
+                'attribute' => 'dateCreate',
+                'value' => function ($data) {
+                    $result = date('d/m/Y',$data['dateCreate']);
+                    return $result;
+                }
+            ],        
+            [
+                'attribute' => 'updateAt',
+                'value' => function ($data) {
+                    $result = date('d/m/Y',$data['updateAt']);
+                    return $result;
+                }
+            ],
         ],
     ]) ?>
 

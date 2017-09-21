@@ -72,10 +72,13 @@ class ProductController extends Controller {
         $model->dateCreate = $time;
 
         if ($model->load(Yii::$app->request->post())) {
-            $data = Yii::$app->request->post();
-            $model->startSale = date("Y-m-d", strtotime($data["Product"]["startSale"])); // đổi về định dạng Y-m-d mới lưu đc vào trong db
-            $model->endSale = date("Y-m-d", strtotime($data["Product"]["endSale"]));
-
+            $model->startSale = date("Y-m-d", strtotime($model["Product"]["startSale"])); // đổi về định dạng Y-m-d mới lưu đc vào trong db
+            $model->endSale = date("Y-m-d", strtotime($model["Product"]["endSale"]));
+            if(!$model->validate()){
+                echo "<pre>";
+                var_dump($model->getErrors());
+                die;
+            }
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->proId]);
             }
@@ -93,9 +96,6 @@ class ProductController extends Controller {
      * @param integer $id
      * @return mixed
      */
-
-        
-
     public function actionUpdate($id) {
         $model = $this->findModel($id);
         $model->startSale = date("d-m-Y", strtotime($model["startSale"]));
@@ -109,12 +109,16 @@ class ProductController extends Controller {
         }
 
         if ($model->load(Yii::$app->request->post())) {
-            $data = Yii::$app->request->post();
-            $model->startSale = date("Y-m-d", strtotime($data["Product"]["startSale"])); // đổi về định dạng d-m-y
-            $model->endSale = date("Y-m-d", strtotime($data["Product"]["endSale"]));
-
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->proId]);
+            $model->startSale = date("Y-m-d", strtotime($model["Product"]["startSale"])); // đổi về định dạng Y-m-d mới lưu đc vào trong db
+            $model->endSale = date("Y-m-d", strtotime($model["Product"]["endSale"]));
+            if(!$model->validate()){
+                echo "<pre>";
+                var_dump($model->getErrors());
+                die;
+            }
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->proId]);
+            }
         } else {
             return $this->render('update', [
                         'model' => $model,
