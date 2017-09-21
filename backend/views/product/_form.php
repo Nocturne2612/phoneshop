@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'catId')->dropDownList($data,['prompt'=>"-Chọn nhóm danh mục-"]) ?> 
 
-    <?= $form->field($model, 'factoryId')->textInput() ?>
+    <?= $form->field($model, 'factoryId')->dropDownList($dataFac,['prompt'=>"-Chọn nhóm thương hiệu -"]) ?> 
 
     <?= $form->field($model, 'images')->textInput(['maxlength' => true,'id'=>"imageFile",'placeholder'=>'click chọn ảnh']) ?>
 
