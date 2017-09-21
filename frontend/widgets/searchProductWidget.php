@@ -4,7 +4,7 @@ namespace frontend\widgets;
 use yii\base\Widget;
 use yii\helpers\Html;
 
-class topNavWidget extends Widget
+class searchProductWidget extends Widget
 {
     public function init()
     {
@@ -14,9 +14,8 @@ class topNavWidget extends Widget
 
     public function run()
     {
-        return $this->render('topNavWidget');
+        return $this->render('searchProductWidget');
     }
 }
-
 
 ?>

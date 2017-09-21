@@ -5,10 +5,12 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Category;
 use backend\models\Product;
+use backend\models\Factory;
 use backend\models\search\ProductSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 //use yii\helpers\ArrayHelper;
 
@@ -63,26 +65,43 @@ class ProductController extends Controller {
      */
     public function actionCreate() {
         $model = new Product();
+        //lấy ra mảng của category
         $modelCat = new Category();
         $data = $modelCat->getCategoryParent();
         if (empty($data)) {
             $data = array();
         }
+        //lấy ra mảng của factory
+        $modelFac = new Factory();
+        $dataFac= ArrayHelper:: map($modelFac->getAllFac(),'facId','facName');
+        // echo "<pre>";
+        // print_r($dataFac);
+        // die();
+
+
         $time = time();
         $model->dateCreate = $time;
 
         if ($model->load(Yii::$app->request->post())) {
             $data = Yii::$app->request->post();
             $model->startSale = date("Y-m-d", strtotime($data["Product"]["startSale"])); // đổi về định dạng Y-m-d mới lưu đc vào trong db
-            $model->endSale = date("Y-m-d", strtotime($data["Product"]["endSale"]));
+            $model->endSale = date("Y-m-d", strtotime($data["Product"]["endSale"])) ; 
+            // echo "<pre>";
+            // print_r($data );
+            // die();
+        }
 
-            if ($model->save()) {
-                return $this->redirect(['view', 'id' => $model->proId]);
-            }
-        } else {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) 
+        {
+
+            
+            return $this->redirect(['view', 'id' => $model->proId]);    
+        }
+        else {
             return $this->render('create', [
-                        'model' => $model,
-                        'data' => $data,
+                'model' => $model,
+                'data' => $data,
+                'dataFac'=>$dataFac,
             ]);
         }
     }
@@ -97,6 +116,7 @@ class ProductController extends Controller {
         
 
     public function actionUpdate($id) {
+
         $model = $this->findModel($id);
         $model->startSale = date("d-m-Y", strtotime($model["startSale"]));
         $model->endSale = date("d-m-Y", strtotime($model["endSale"]));
@@ -108,17 +128,21 @@ class ProductController extends Controller {
             $data = array();
         }
 
+        $modelFac = new Factory();
+        $dataFac= ArrayHelper:: map($modelFac->getAllFac(),'facId','facName');
+
         if ($model->load(Yii::$app->request->post())) {
             $data = Yii::$app->request->post();
             $model->startSale = date("Y-m-d", strtotime($data["Product"]["startSale"])); // đổi về định dạng d-m-y
             $model->endSale = date("Y-m-d", strtotime($data["Product"]["endSale"]));
 
-            $model->save();
+            $model->save(false);
             return $this->redirect(['view', 'id' => $model->proId]);
         } else {
             return $this->render('update', [
                         'model' => $model,
                         'data' => $data,
+                        'dataFac'=>$dataFac,
             ]);
         }
     }

@@ -3,22 +3,22 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Category;
-use backend\models\search\CategorySearch;
+use backend\models\Factory;
+use backend\models\FactorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\helpers\ArrayHelper;
 
 /**
- * CategoryController implements the CRUD actions for Category model.
+ * FactoryController implements the CRUD actions for Factory model.
  */
-class CategoryController extends Controller {
-
+class FactoryController extends Controller
+{
     /**
      * @inheritdoc
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -30,104 +30,98 @@ class CategoryController extends Controller {
     }
 
     /**
-     * Lists all Category models.
+     * Lists all Factory models.
      * @return mixed
      */
-    public function actionIndex() {
-        $searchModel = new CategorySearch();
+    public function actionIndex()
+    {
+        $searchModel = new FactorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single Category model.
+     * Displays a single Factory model.
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id) {
+    public function actionView($id)
+    {
         return $this->render('view', [
-                    'model' => $this->findModel($id),
+            'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new Category model.
+     * Creates a new Factory model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate() {
-        $model = new Category();
-        $dataCat = $model->getCategoryParent();
-        if (empty($dataCat))
-            $dataCat = array();
+    public function actionCreate()
+    {
+        $model = new Factory();
+        
         $time = time();
-
         $model->dateCreate = $time;
 
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->catId]);
-        } 
-        else {
+            return $this->redirect(['view', 'id' => $model->facId]);
+        } else {
             return $this->render('create', [
-                        'model' => $model,
-                        'dataCat' => $dataCat,
+                'model' => $model,
             ]);
         }
     }
 
     /**
-     * Updates an existing Category model.
+     * Updates an existing Factory model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id) {
-        $model = $this->findModel($id);
-        $dataCat = $model->getCategoryParent();
-        if (empty($dataCat))
-            $dataCat = array();
+    public function actionUpdate($id)
+    {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->catId]);
+            return $this->redirect(['view', 'id' => $model->facId]);
         } else {
             return $this->render('update', [
-                        'model' => $model,
-                        'dataCat' => $dataCat,
+                'model' => $model,
             ]);
         }
     }
 
     /**
-     * Deletes an existing Category model.
+     * Deletes an existing Factory model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id) {
+    public function actionDelete($id)
+    {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Category model based on its primary key value.
+     * Finds the Factory model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Category the loaded model
+     * @return Factory the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id) {
-        if (($model = Category::findOne($id)) !== null) {
+    protected function findModel($id)
+    {
+        if (($model = Factory::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-
 }
