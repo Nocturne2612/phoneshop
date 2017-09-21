@@ -67,8 +67,20 @@ AppAsset::register($this);
                                             <li>
                                                 <a href="<?php echo Yii::$app->homeUrl . 'product' ?>">Sản phẩm</a>
                                             </li>
+
                                         </ul>
                                     </li>
+                                     <li>
+                                        <a><i class="fa fa-sitemap"></i> Đặt Hàng <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li>
+                                                <a href="<?php echo Yii::$app->homeUrl . 'order' ?>">Danh sách đặt hàng</a>
+                                            </li>
+
+
+                                        </ul>
+                                    </li>
+
                                     <li>
                                         <a><i class="fa fa-picture-o"></i> Hình Ảnh - Banner <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
