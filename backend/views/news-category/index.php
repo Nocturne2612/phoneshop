@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
+use backend\models\NewsCategory;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\search\NewsCategorySearch */
@@ -29,15 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'parentId',
                 'value' => function ($data) {
-                    if ($data['parentId']!=null) {
-//                       $a = ArrayHelper::map($data, 'parentId', 'newsCatName');
-//                       echo "<pre>";
-//                       var_dump($data);
-//                       die;
-                        return 'not Root';
-                    } else {
-                        return 'Root';
-                    }
+                    $name = NewsCategory::getNewsCategoryBy($data->parentId);
+                    return $name;
                 }
             ],
             [

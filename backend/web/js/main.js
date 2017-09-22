@@ -10,7 +10,6 @@ $(document).ready(function(){
 });
 
     tinymce.init({
-		// selector: 'textarea#content',
 		selector:  'textarea#description',
 		height: 350,
 		width:"",
@@ -29,13 +28,12 @@ $(document).ready(function(){
     remove_script_host : false,
       external_filemanager_path:host[0]+"fileDes/",
     	filemanager_title:"Quan ly file" ,
-   		external_plugins: { "filemanager" : host[0]+"fileDes/plugin.min.js"},
+   		external_plugins: { "filemanager" : host[0]+"fileDes/plugin.min.js"}
     	//filemanager_access_key:csrf(),
     });
 
 tinymce.init({
 		selector: 'textarea#content',
-		// selector:  'textarea#description',
 		height: 350,
 		width:"",
 		plugins: [
@@ -54,7 +52,7 @@ tinymce.init({
     
       external_filemanager_path:host[0]+"file/",
     	filemanager_title:"Quan ly file" ,
-   		external_plugins: { "filemanager" : host[0]+"file/plugin.min.js"},
+   		external_plugins: { "filemanager" : host[0]+"file/plugin.min.js"}
       // external_filemanager_path:"http://test.albertoperipolli.com/secondaryserver/rfm0123/",
       // external_plugins: { "filemanager" : "http://test.albertoperipolli.com/secondaryserver/rfm0123/plugin.min.js"},
     	//filemanager_access_key:csrf(),

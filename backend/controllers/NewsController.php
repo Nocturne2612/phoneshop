@@ -74,8 +74,8 @@ class NewsController extends Controller
 //        echo "<pre>";
 //        var_dump();
 //        die;
-        $time=time();
-        $model->dateCreate= $time;
+        $model->dateCreate= time();
+        $model->updateAt= time();
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->newsId]);

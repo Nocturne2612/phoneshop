@@ -74,5 +74,12 @@ class NewsCategory extends \yii\db\ActiveRecord {
         }
         return $this->data;
     }
-
+    public function getNewsCategoryBy($id){
+        if($id==null){
+            return "Root";
+        }else{
+            $data = NewsCategory::find()->asArray()->where('newsCatId=:newsCatId',['newsCatId'=>$id])->one();
+            return $data["newsCatName"];
+        }
+    }
 }
