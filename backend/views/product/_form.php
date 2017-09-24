@@ -19,6 +19,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'factoryId')->dropDownList($dataFac,['prompt'=>"-Chọn nhóm thương hiệu -"]) ?> 
 
     <?= $form->field($model, 'images')->textInput(['maxlength' => true,'id'=>"imageFile",'placeholder'=>'click chọn ảnh']) ?>
+    <img src="" id="previewImg" width="150" style="border: 1px solid red">
 
     <?= $form->field($model, 'price')->textInput() ?>
 

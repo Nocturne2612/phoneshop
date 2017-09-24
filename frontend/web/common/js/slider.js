@@ -169,5 +169,21 @@
                 var iid3 = "countbox_3";
                 CountBack_slider(gsecs3,"countbox_3", 3);
 
+                /* slider price */
+                var currencies = "$";
+                var toolbar_status = "1";
+                var rate = "1";
+                var min = "99"
+                    min = Number(min);
+                var max = "999"
+                    max = Number(max);
+                var currentMinPrice = "99"
+                    currentMinPrice = Number(currentMinPrice);
+                var currentMaxPrice = "999"
+                //alert('min: '+min+'--max: '+ max+ 'currentMin: '+currentMinPrice);
+                currentMaxPrice = Number(currentMaxPrice);
+                var params = "";
+                params = $.trim(params);
+
             });
        

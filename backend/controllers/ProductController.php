@@ -74,28 +74,13 @@ class ProductController extends Controller {
         //lấy ra mảng của factory
         $modelFac = new Factory();
         $dataFac= ArrayHelper:: map($modelFac->getAllFac(),'facId','facName');
-        // echo "<pre>";
-        // print_r($dataFac);
-        // die();
-
 
         $time = time();
         $model->dateCreate = $time;
 
-        if ($model->load(Yii::$app->request->post())) {
-            $data = Yii::$app->request->post();
-            $model->startSale = date("Y-m-d", strtotime($data["Product"]["startSale"])); // đổi về định dạng Y-m-d mới lưu đc vào trong db
-            $model->endSale = date("Y-m-d", strtotime($data["Product"]["endSale"])) ; 
-            // echo "<pre>";
-            // print_r($data );
-            // die();
-        }
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) 
-        {
-
-            
-            return $this->redirect(['view', 'id' => $model->proId]);    
+       if ($model->load(Yii::$app->request->post()) && $model->save())
+        {  
+            return $this->redirect(['view', 'id' => $model->proId]); 
         }
         else {
             return $this->render('create', [
@@ -118,9 +103,6 @@ class ProductController extends Controller {
     public function actionUpdate($id) {
 
         $model = $this->findModel($id);
-        $model->startSale = date("d-m-Y", strtotime($model["startSale"]));
-        $model->endSale = date("d-m-Y", strtotime($model["endSale"]));
-
         $modelCat = new Category();
 
         $data = $modelCat->getCategoryParent();
@@ -131,14 +113,11 @@ class ProductController extends Controller {
         $modelFac = new Factory();
         $dataFac= ArrayHelper:: map($modelFac->getAllFac(),'facId','facName');
 
-        if ($model->load(Yii::$app->request->post())) {
-            $data = Yii::$app->request->post();
-            $model->startSale = date("Y-m-d", strtotime($data["Product"]["startSale"])); // đổi về định dạng d-m-y
-            $model->endSale = date("Y-m-d", strtotime($data["Product"]["endSale"]));
-
-            $model->save(false);
+       if ($model->load(Yii::$app->request->post()) && $model->save())
+        {
             return $this->redirect(['view', 'id' => $model->proId]);
-        } else {
+        } 
+        else {
             return $this->render('update', [
                         'model' => $model,
                         'data' => $data,

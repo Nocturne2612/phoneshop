@@ -254,8 +254,8 @@ AppAsset::register($this);
               <iframe width="100%" height="500" frameborder="0" src="../../file/dialog.php?type=1&field_id=imageFile"></iframe>
               </div>
         <div class="modal-footer">
-         <!--  <button type="button" class="btn btn-default" data-dismiss="modal">OK</button> -->
-          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">OK</button> -->
+          <button type="button" class="btn btn-primary">Save changes</button>
       </div>
   </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
