@@ -65,9 +65,14 @@ class NewsCategoryController extends Controller
     {
         $model = new NewsCategory();
         $data = $model->getNewsCategory();
+<<<<<<< HEAD
         
        $time=time();
         // $model->dateCreate= date ("Y-m-d", $timestamp = 'time()');
+=======
+        $model->dateCreate= time();
+        $model->updateAt= time();
+>>>>>>> dfe16c3dd0eec437622c001d0ecd518d042b285f
 
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -90,11 +95,8 @@ class NewsCategoryController extends Controller
     {
         $model = $this->findModel($id);
         $data = $model->getNewsCategory();
-        $time=time();
-        // echo(date("Y-m-d",$time));
-        // die();
-        $model->updateAt= $time;
-
+        $model->updateAt= time();
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->newsCatId]);
         } else {

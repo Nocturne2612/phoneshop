@@ -67,16 +67,14 @@ AppAsset::register($this);
                                             <li>
                                                 <a href="<?php echo Yii::$app->homeUrl . 'product' ?>">Sản phẩm</a>
                                             </li>
+
                                         </ul>
                                     </li>
-                                    <li>
-                                        <a><i class="fa fa-picture-o"></i> Hình Ảnh - Banner <span class="fa fa-chevron-down"></span></a>
+                                     <li>
+                                        <a><i class="fa fa-bars"></i> Đơn hàng - Giao dịch<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li>
-                                                <a href="<?php echo Yii::$app->homeUrl . 'image' ?>">Hình ảnh</a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo Yii::$app->homeUrl . 'banner' ?>">Banner</a>
+                                                <a href="<?php echo Yii::$app->homeUrl . 'order' ?>">Danh sách đơn hàng</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -97,7 +95,7 @@ AppAsset::register($this);
                                 <h3><i class="fa fa-gears"></i> Quản Trị</h3>
                                 <ul class="nav side-menu">
                                     <li>
-                                        <a><i class="fa fa-users"></i> Tài Khoản <span class="fa fa-chevron-down"></span></a>
+                                        <a><i class="fa fa-user"></i> Tài Khoản <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="<?php echo Yii::$app->homeUrl . 'permission' ?>">Danh sách quyền</a></li>
                                             <li><a href="<?php echo Yii::$app->homeUrl . 'userlist' ?>">Danh sách nhóm tài khoản</a></li>
@@ -105,6 +103,23 @@ AppAsset::register($this);
                                         </ul>
                                     </li>
                                     <li>
+                                        <a><i class="fa fa-users"></i> Khách hàng <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="<?php echo Yii::$app->homeUrl . 'customer' ?>">Danh sách khách hàng</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-picture-o"></i> Hình Ảnh - Banner <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li>
+                                                <a href="<?php echo Yii::$app->homeUrl . 'image' ?>">Hình ảnh</a>
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo Yii::$app->homeUrl . 'banner' ?>">Banner</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+<!--                                    <li>
                                         <a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="#level1_1">Level One</a>
@@ -121,7 +136,7 @@ AppAsset::register($this);
                                             <li><a href="#level1_2">Level One</a>
                                             </li>
                                         </ul>
-                                    </li> 
+                                    </li> -->
                                 </ul>
                             </div>
 

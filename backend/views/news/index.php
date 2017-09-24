@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use backend\models\NewsCategory;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\search\NewsSearch */
@@ -24,14 +25,40 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'newsId',
             'name',
-            'newsCatId',
+//            'newsCatId',
+            [
+                'attribute' => 'newsCatId',
+                'value' => function ($data) {
+                    $name = NewsCategory::getNewsCategoryBy($data->newsCatId);
+                    return $name;
+                }
+            ],
             'userId',
-            'image',
+//            'image',
+            [
+                'attribute'=>'image',
+                'label'=>'Image',
+                'format'=>'raw',
+                'value' => function ($data) {
+//                        $baseUrl = Yii::$app->params['url'];
+                        $url = $data->image;
+//                        echo "<pre>";
+//                        var_dump($url);
+//                        die;
+                        return Html::img($url, ['alt'=>'myImage','height'=>'100']);
+                 }
+            ],
             // 'summary',
             // 'content',
-             'status',
+             [
+                'attribute' => 'status',
+//                'contentOptions' => ['class' => 'label label-blue'],
+                'value' => function ($data) {
+                    $result = ($data['status'] == 0) ? 'Không hoạt động' : 'Đang hoạt động';
+                    return $result;
+                }
+            ],
             // 'dateCreate',
             // 'updateAt',
             ['class' => 'yii\grid\ActionColumn'],

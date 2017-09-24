@@ -97,9 +97,6 @@ class ProductController extends Controller {
      * @param integer $id
      * @return mixed
      */
-
-        
-
     public function actionUpdate($id) {
 
         $model = $this->findModel($id);
@@ -116,8 +113,13 @@ class ProductController extends Controller {
        if ($model->load(Yii::$app->request->post()) && $model->save())
         {
             return $this->redirect(['view', 'id' => $model->proId]);
+<<<<<<< HEAD
         } 
         else {
+=======
+
+        } else {
+>>>>>>> dfe16c3dd0eec437622c001d0ecd518d042b285f
             return $this->render('update', [
                         'model' => $model,
                         'data' => $data,

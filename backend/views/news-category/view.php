@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use backend\models\NewsCategory;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\NewsCategory */
@@ -30,10 +31,35 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'newsCatId',
             'newsCatName',
-            'parentId',
-            'status',
-            'dateCreate',
-            'updateAt',
+            [
+                'attribute' => 'parentId',
+                'value' => function ($data) {
+                    $name = NewsCategory::getNewsCategoryBy($data->parentId);
+                    return $name;
+                }
+            ],
+            [
+                'attribute' => 'status',
+//                'contentOptions' => ['class' => 'label label-blue'],
+                'value' => function ($data) {
+                    $result = ($data['status'] == 0) ? 'Không hoạt động' : 'Đang hoạt động';
+                    return $result;
+                }
+            ],
+            [
+                'attribute' => 'dateCreate',
+                'value' => function ($data) {
+                    $result = date('d/m/Y',$data['dateCreate']);
+                    return $result;
+                }
+            ],        
+            [
+                'attribute' => 'updateAt',
+                'value' => function ($data) {
+                    $result = date('d/m/Y',$data['updateAt']);
+                    return $result;
+                }
+            ],
         ],
     ]) ?>
 
