@@ -4,6 +4,7 @@ namespace frontend\models;
 
 use Yii;
 use yii\db\Expression;
+use yii\data\Pagination;
 
 class Product extends \yii\db\ActiveRecord
 {
@@ -82,13 +83,24 @@ class Product extends \yii\db\ActiveRecord
         return($queryRandom);
     }
 
-    public function getProductByCatID($id){ 
-        $data =  $data = Product::find()->asArray()->where('catId IN ('.$id.')')->all();
-        return $data; // select * from product where catID =$id;
+    public function getProductByCatID($id){
+        $pages = $this->getPagerProduct($id); 
+        $data =  $data = Product::find()->asArray()->where('catId IN ('.$id.')')->offset($pages->offset)->limit($pages->limit)->all();
+        return $data; 
     }
-//     public function getInfoProductBy($id){
-//         $data = Product::find()->asArray()->where('proId=:id',['id'=>$id])->one();
-//         return $data;
-//     }
+    public function getPagerProduct($catId){
+
+        // lấy sp nằm trong cat id con(vi du lấy tất cả sản phẩm của iphone 6)
+        $data = Product::find()->asArray()->where('catId IN ('.$catId.')')->all();
+
+        //tổng số sản phẩm 
+        $pages = new Pagination(['totalCount' => count($data),'pageSize' => \Yii::$app->params['pageSize']]);
+        return $pages; // giá trị pageSize nằm trong params fontend/config/main.php (giá trị số product hiện tại để là 4)
+    }
     
+    //lấy deltail product
+     public function getProductById($proId){
+         $data = Product::find()->asArray()->where('proId=:proId',['proId'=>$proId])->one();
+         return $data;
+     }
 }

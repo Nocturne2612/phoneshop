@@ -1,5 +1,6 @@
 var host = window.location.href;//backend
 host = host.split("backend");
+////////////////
 $(document).ready(function(){
 	$("#startSale").datepicker({
 		 dateFormat: "dd-mm-yy"
@@ -8,14 +9,13 @@ $(document).ready(function(){
 		 dateFormat: "dd-mm-yy"
 	});
 });
+/////////////////
 
-
-tinymce.init({
-		// selector: 'textarea#content',
-		selector:  '#content,#description',
-		height: 350,
-		width:"",
-		plugins: [
+ tinymce.init({
+    selector: 'textarea',theme: "modern",
+    height: "",
+    width:"",
+    plugins: [
       "advlist autolink lists link image charmap print preview hr anchor pagebreak",
       "searchreplace wordcount visualblocks visualchars fullscreen",
       "insertdatetime media nonbreaking save table contextmenu directionality",
@@ -26,16 +26,13 @@ tinymce.init({
     image_advtab: true,
     menubar: false,
     toolbar_items_size: 'small',
-    relative_urls: false,
-    remove_script_host : false,
-    external_filemanager_path:host[0]+"fileDes/",
+        relative_urls: false,
+        remove_script_host : false,
+        external_filemanager_path:host[0]+"file/",
     filemanager_title:"Quan ly file" ,
-   	external_plugins: { "filemanager" : host[0]+"fileDes/plugin.min.js"},
-
-    	//filemanager_access_key:csrf(),
+    external_plugins: { "filemanager" : host[0]+"file/plugin.min.js"},
 });
-
-
+/////////////
 jQuery(document).ready(function($) {
   $('#imageFile').click(function() {
     $('#media-modal').modal('show');
