@@ -20,7 +20,7 @@
                         <div class="product_icon">
                             <div class='new-icon'><span>new</span></div>
                         </div>
-                        <a href="product_detail.html" title="<?php echo $value["proName"] ?>" class="product-image">
+                        <a href="<?= Yii::$app->homeUrl.'product/detail?id='.$value['proId']?>" title="<?php echo $value["proName"] ?>" class="product-image">
                             <img width="195" height="231" src="<?php echo $value["images"] ?>" alt="<?php echo $value["proName"] ?>" />
                         </a>
                         <div class="box-hover">
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="des-container">
-                        <h2 class="product-name"><a href="product_detail.html" title="<?php echo $value["proName"] ?>"><?php echo $value["proName"] ?></a></h2>
+                        <h2 class="product-name"><a href="<?= Yii::$app->homeUrl.'product/detail?id='.$value['proId']?>" title="<?php echo $value["proName"] ?>"><?php echo $value["proName"] ?></a></h2>
                         <div class="price-box">
                             <p class="special-price">
                                 <span class="price-label">Special Price</span>
