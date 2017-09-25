@@ -9,7 +9,8 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Đăng ký';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="container">
+
+<div class="site-signup container">
 
     <div class="row">
 
@@ -21,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
             
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
-            <?= $form->field($model, 'customerName')->textInput(['autofocus' => true]) ?>
+            <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
             <?= $form->field($model, 'email') ?>
 

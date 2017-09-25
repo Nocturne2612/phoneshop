@@ -9,10 +9,9 @@ use common\models\Customer;
  */
 class CustomerSignup extends Model
 {
-    public $customerName;
+    public $username;
     public $email;
     public $password;
-
 
     /**
      * @inheritdoc
@@ -20,16 +19,16 @@ class CustomerSignup extends Model
     public function rules()
     {
         return [
-            ['customerName', 'trim'],
-            ['customerName', 'required'],
-            ['customerName', 'unique', 'targetClass' => '\common\models\Customer', 'message' => 'This customerName has already been taken.'],
-            ['customerName', 'string', 'min' => 2, 'max' => 255],
+            ['username', 'trim'],
+            ['username', 'required'],
+            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
+            ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\Customer', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
@@ -39,7 +38,7 @@ class CustomerSignup extends Model
     /**
      * Signs user up.
      *
-     * @return User|null the saved model or null if saving fails
+     * @return Customer|null the saved model or null if saving fails
      */
     public function signup()
     {
@@ -47,12 +46,12 @@ class CustomerSignup extends Model
             return null;
         }
         
-        $customer = new Customer();
-        $customer->customerName = $this->customerName;
-        $customer->email = $this->email;
-        $customer->setPassword($this->password);
-        $customer->generateAuthKey();
+        $user = new Customer();
+        $user->username = $this->username;
+        $user->email = $this->email;
+        $user->setPassword($this->password);
+        $user->generateAuthKey();
         
-        return $customer->save() ? $customer : null;
+        return $user->save() ? $user : null;
     }
 }

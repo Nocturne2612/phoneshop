@@ -31,12 +31,27 @@ class ProductController extends \yii\web\Controller
            $listid = $id; // ngược lại cat ko có mục con thì list bằng tất cả sp trong cat đó 
         }
         $data= $modelPro->getProductByCatID($listid);
+        $pages= $modelPro->getPagerProduct($listid);
         //echo "<pre>";
-		// print_r($listid);
+		// print_r($pages);
 		// die();
  
         // $data = $modelpro->getProductByCat($listid);
-    	return $this->render('listProduct',["data"=>$data]);
+    	return $this->render('listProduct',[
+            "data"=>$data,
+            // 'dataCat'=>$dataCat[0]["catName"],
+            "pages"=>$pages
+
+        ]);
+    }
+    public function actionDetail($id)
+    {
+        $data= new Product();
+        $data=$data->getProductById($id);
+ 
+        
+
+        return $this->render('detail',['data'=>$data]);
     }
 
 }

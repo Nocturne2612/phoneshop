@@ -6,10 +6,10 @@
     ?> 
         <div class="products-grid">
             <div class="images-container">
-                <a class="product-image" title="<?php echo $value["proName"] ?> " href="#"><img alt="<?php echo $value["proName"] ?>" src="<?php echo $value["images"] ?>"></a>
+                <a class="product-image" title="<?php echo $value["proName"] ?> " href="<?= Yii::$app->homeUrl.'product/detail?id='.$value['proId']?>"><img alt="<?php echo $value["proName"] ?>" src="<?php echo $value["images"] ?>"></a>
             </div>
             <div class="des-container">
-                <h2 class="product-name"><a title="<?php echo $value["proName"] ?> " href="#"><?php echo $value["proName"] ?> </a></h2>
+                <h2 class="product-name"><a title="<?php echo $value["proName"] ?> " href="<?= Yii::$app->homeUrl.'product/detail?id='.$value['proId']?>"><?php echo $value["proName"] ?> </a></h2>
                 <div class="ratings">
                     <div class="rating-box">
                         <div style="width:67%" class="rating"></div>

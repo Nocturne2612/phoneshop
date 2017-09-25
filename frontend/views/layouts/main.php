@@ -77,6 +77,7 @@ AppAsset::register($this);
                 <div class="row">
                     <div class="col-md-3">
                         <div class="mega-container visible-lg visible-md">
+                        
                             <?= categoryWidget::widget() ?>
                         </div>
                     </div>

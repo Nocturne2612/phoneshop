@@ -52,7 +52,6 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'description')->textarea(['id' =>'description']) ?>
 
     <?= $form->field($model, 'content')->textarea(['id' =>'content']) ?>
-
     <?= $form->field($model, 'status')->checkbox() ?>
 
 
