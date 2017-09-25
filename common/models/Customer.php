@@ -11,23 +11,14 @@ use yii\web\IdentityInterface;
  * User model
  *
  * @property integer $id
-<<<<<<< HEAD
- * @property string $customerName
-=======
  * @property string $username
->>>>>>> 70c60c4efeebdb2b6dc3dd7304b923db98cb84ee
  * @property string $password_hash
  * @property string $password_reset_token
  * @property string $email
  * @property string $auth_key
  * @property integer $status
-<<<<<<< HEAD
- * @property integer $dateCreate
- * @property integer $updatedAt
-=======
  * @property integer $created_at
  * @property integer $updated_at
->>>>>>> 70c60c4efeebdb2b6dc3dd7304b923db98cb84ee
  * @property string $password write-only password
  */
 class Customer extends ActiveRecord implements IdentityInterface

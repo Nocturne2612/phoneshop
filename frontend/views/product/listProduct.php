@@ -154,7 +154,7 @@ use yii\widgets\LinkPager;
 										<div class="box-hover">
 											<ul class="add-to-links">
 												<li><a href="#" class="link-quickview">Quick View</a></li>
-												<li><a href="#" class="link-wishlist">Add to Wishlist</a></li>
+												<li><a href="javascript:void(0)" class="link-wishlist" onclick="addWishlist(<?= $value["proId"] ?>)">Add to Wishlist</a></li>
 												<li><a href="#" class="link-compare">Add to Compare</a></li>
 												<li><a href="#" class="link-cart">Add to Cart</a></li>
 											</ul>

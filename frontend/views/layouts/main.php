@@ -148,7 +148,11 @@ AppAsset::register($this);
 
 <?php $this->endBody() ?>
 
-
+<script type="text/javascript">
+    function addWishlist(id){
+        $.get
+    }
+</script>
 
 </body>
 </html>

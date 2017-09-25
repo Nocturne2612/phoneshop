@@ -6,10 +6,11 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Đăng ký';
+$this->title = '';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
+<div class="site-signup">
+    <h1><?= Html::encode($this->title) ?></h1>
 <div class="site-signup container">
 
     <div class="row">
@@ -17,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-3">
         </div>
         <div class="col-lg-5">
-            <h1><?= Html::encode($this->title) ?></h1>
+            <h1><?= Html::encode($this->title) ?>Đăng Ký</h1>
             <p>Vui lòng điền thông tin để đăng ký:</p>
             
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
