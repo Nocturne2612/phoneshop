@@ -2,8 +2,6 @@
 
 namespace backend\models;
 
-use Yii;
-
 /**
  * This is the model class for table "news_category".
  *
@@ -13,19 +11,22 @@ use Yii;
  * @property integer $status
  * @property integer $dateCreate
  */
-class NewsCategory extends \yii\db\ActiveRecord {
+class NewsCategory extends \yii\db\ActiveRecord
+{
 
     /**
      * @inheritdoc
      */
-    public static function tableName() {
+    public static function tableName()
+    {
         return 'news_category';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules()
+    {
         return [
             [['newsCatName'], 'required', 'message' => '{attribute} không được để trống'],
             [['parentId', 'status', 'dateCreate', 'updateAt'], 'integer'],
@@ -37,7 +38,8 @@ class NewsCategory extends \yii\db\ActiveRecord {
     /**
      * @inheritdoc
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return [
             'newsCatId' => 'ID',
             'newsCatName' => 'Danh mục tin tức',
@@ -50,18 +52,19 @@ class NewsCategory extends \yii\db\ActiveRecord {
 
     public $data;
 
-    public function getNewsCategory($parent = null, $level = "") {
+    public function getNewsCategory($parent = null, $level = "")
+    {
 
         if ($parent == null) {
             $result = NewsCategory::find()
-                    ->where(['is', 'parentId', null])
-                    ->asArray()
-                    ->all();
+                ->where(['is', 'parentId', null])
+                ->asArray()
+                ->all();
         } else {
             $result = NewsCategory::find()
-                    ->where('parentId = :parent', ['parent' => $parent])
-                    ->asArray()
-                    ->all();
+                ->where('parentId = :parent', ['parent' => $parent])
+                ->asArray()
+                ->all();
         }
 
         $level .= "|--";
@@ -74,11 +77,13 @@ class NewsCategory extends \yii\db\ActiveRecord {
         }
         return $this->data;
     }
-    public function getNewsCategoryBy($id){
-        if($id==null){
+
+    public function getNewsCategoryBy($id)
+    {
+        if ($id == null) {
             return "Root";
-        }else{
-            $data = NewsCategory::find()->asArray()->where('newsCatId=:newsCatId',['newsCatId'=>$id])->one();
+        } else {
+            $data = NewsCategory::find()->asArray()->where('newsCatId=:newsCatId', ['newsCatId' => $id])->one();
             return $data["newsCatName"];
         }
     }

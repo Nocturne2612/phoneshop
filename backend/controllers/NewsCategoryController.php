@@ -2,12 +2,12 @@
 
 namespace backend\controllers;
 
-use Yii;
 use backend\models\NewsCategory;
 use backend\models\search\NewsCategorySearch;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * NewsCategoryController implements the CRUD actions for NewsCategory model.
@@ -65,13 +65,9 @@ class NewsCategoryController extends Controller
     {
         $model = new NewsCategory();
         $data = $model->getNewsCategory();
-     
-       $time=time();
-        // $model->dateCreate= date ("Y-m-d", $timestamp = 'time()');
 
-        $model->dateCreate= time();
-        $model->updateAt= time();
-
+        $model->dateCreate = time();
+        $model->updateAt = time();
 
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -94,8 +90,8 @@ class NewsCategoryController extends Controller
     {
         $model = $this->findModel($id);
         $data = $model->getNewsCategory();
-        $model->updateAt= time();
-        
+        $model->updateAt = time();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->newsCatId]);
         } else {

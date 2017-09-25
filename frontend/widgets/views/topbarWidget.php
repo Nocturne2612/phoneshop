@@ -8,7 +8,8 @@
         </div>
         <div class="topbar-right">
             <ul class="topbar-nav clearfix">
-                <li><a href="#" class="login">Login</a></li>
+                <li><a href="<?= Yii::$app->homeUrl.'site/login'?>" class="login">Login</a></li>
+                <li><a href="<?= Yii::$app->homeUrl.'site/signup'?>" class="login">signup</a></li>
                 <li class="dropdown">
                     <a href="#" class="account dropdown-toggle" data-toggle="dropdown">My Account</a>
                     <ul class="dropdown-menu dropdown-menu-right">
