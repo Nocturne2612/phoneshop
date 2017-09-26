@@ -16,6 +16,7 @@ use frontend\widgets\searchProductWidget;
 use frontend\widgets\yourCartWidget;
 use frontend\widgets\topbarWidget;
 use frontend\widgets\footerWidget;
+
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -150,7 +151,9 @@ AppAsset::register($this);
 
 <script type="text/javascript">
     function addWishlist(id){
-        $.get
+        $.get('<?php echo Yii::$app->homeUrl.'Wishlist/Add' ?>',{'id':id},function(data){
+
+        });
     }
 </script>
 

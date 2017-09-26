@@ -5,7 +5,7 @@ namespace frontend\models;
 use Yii;
 
 /**
- * This is the model class for table "wistlist".
+ * This is the model class for table "wishlist".
  *
  * @property integer $wisId
  * @property integer $userId
@@ -13,14 +13,14 @@ use Yii;
  * @property integer $dateCreate
  * @property integer $status
  */
-class Wistlist extends \yii\db\ActiveRecord
+class Wishlist extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'wistlist';
+        return 'wishlist';
     }
 
     /**
@@ -29,8 +29,8 @@ class Wistlist extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['wisId', 'userId', 'proId'], 'required'],
-            [['wisId', 'userId', 'proId', 'dateCreate', 'status'], 'integer'],
+            [['userId', 'proId'], 'required'],
+            [['userId', 'proId', 'dateCreate', 'status'], 'integer'],
         ];
     }
 

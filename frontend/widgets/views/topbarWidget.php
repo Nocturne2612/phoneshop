@@ -1,3 +1,6 @@
+<?php 
+use yii\helpers\Html;
+ ?>
 <div class="topbar">
     <div class="container">
         <div class="topbar-left">
@@ -8,8 +11,14 @@
         </div>
         <div class="topbar-right">
             <ul class="topbar-nav clearfix">
+                <?php 
+                if(Yii::$app->user->isGuest){
+
+                ?>
                 <li><a href="<?= Yii::$app->homeUrl.'site/login'?>" class="login">Login</a></li>
                 <li><a href="<?= Yii::$app->homeUrl.'site/signup'?>" class="login">signup</a></li>
+                <?php }else{ ?>
+                <li><?php echo Html::a('Logout',['/site/logout'],['data-method'=> 'post']); ?></li>
                 <li class="dropdown">
                     <a href="#" class="account dropdown-toggle" data-toggle="dropdown">My Account</a>
                     <ul class="dropdown-menu dropdown-menu-right">
@@ -20,6 +29,7 @@
                         <li><a title="Testimonial" href="testimonial.html">Testimonial</a></li>
                     </ul>
                 </li>
+                <?php } ?>
                 <li class="dropdown">
                     <a href="#" class="currency dropdown-toggle" data-toggle="dropdown">USD</a>
                     <ul class="dropdown-menu dropdown-menu-right">
