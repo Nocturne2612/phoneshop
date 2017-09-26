@@ -34,6 +34,7 @@ AppAsset::register($this);
 <body>
     <?php $this->beginBody() ?>
     <div class="header">
+
         <?= topbarWidget::widget() ?>
         <!-- /.topbar -->
         <div class="header-bottom">
@@ -151,8 +152,8 @@ AppAsset::register($this);
 
 <script type="text/javascript">
     function addWishlist(id){
-        $.get('<?php echo Yii::$app->homeUrl.'Wishlist/Add' ?>',{'id':id},function(data){
-
+        $.get('<?php echo Yii::$app->homeUrl.'wishlist/add' ?>',{'id':id},function(data){
+            alert("Thêm Thành Công Vào Wishlist")
         });
     }
 </script>
