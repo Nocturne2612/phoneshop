@@ -2,12 +2,13 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use backend\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\search\CategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Categories';
+$this->title = 'Danh mục sản phẩm';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-index">
@@ -16,18 +17,36 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Category', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Tạo mới', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'catId',
+//            'catId',
             'catName',
-            'parentId',
-            'status',
-            'dateCreate',
+            [
+                'attribute' => 'parentId',
+                'value' => function ($data) {
+                    $name = Category::getCategoryBy($data->parentId);
+                    return $name;
+                }
+            ],
+            [
+                'attribute' => 'status',
+                'value' => function ($data) {
+                    $result = ($data['status'] == 0) ? 'Không hoạt động' : 'Đang hoạt động';
+                    return $result;
+                }
+            ],
+            [
+                'attribute' => 'dateCreate',
+                'value' => function ($data) {
+                    $result = date('d/m/Y',$data['dateCreate']);
+                    return $result;
+                }
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

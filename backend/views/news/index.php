@@ -35,7 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'userId',
-//            'image',
             [
                 'attribute'=>'image',
                 'label'=>'Image',
@@ -43,9 +42,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($data) {
 //                        $baseUrl = Yii::$app->params['url'];
                         $url = $data->image;
-//                        echo "<pre>";
-//                        var_dump($url);
-//                        die;
                         return Html::img($url, ['alt'=>'myImage','height'=>'100']);
                  }
             ],

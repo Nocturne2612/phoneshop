@@ -34,9 +34,10 @@ class News extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [[ 'userId', 'newsCatId', 'name', 'summary', 'content'], 'required','message' => '{attribute} không được để trống'],
+            [['newsCatId', 'userId', 'name', 'summary', 'content', 'dateCreate', 'updateAt'], 'required'],
             [['newsCatId', 'userId', 'status', 'dateCreate', 'updateAt'], 'integer'],
-            [['name', 'image', 'summary', 'content'], 'string', 'max' => 255],
+            [['content'], 'string'],
+            [['name', 'image', 'summary'], 'string', 'max' => 255],
             [['name'], 'unique'],
         ];
     }

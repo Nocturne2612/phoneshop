@@ -2,12 +2,14 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use backend\models\Factory;
+use backend\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Product */
 
-$this->title = $model->proId;
-$this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['index']];
+$this->title = $model->proName;
+$this->params['breadcrumbs'][] = ['label' => 'Sản phẩm', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="product-view">
@@ -15,11 +17,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->proId], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->proId], [
+        <?= Html::a('Cập nhật', ['update', 'id' => $model->proId], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Xóa', ['delete', 'id' => $model->proId], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Bạn có chắc muốn xóa mục này?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -30,9 +32,30 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'proId',
             'proName',
-            'catId',
-            'factoryId',
-            'images',
+            [
+                'attribute' => 'catId',
+                'value' => function ($data) {
+                    $name = Category::getCategoryBy($data->catId);
+                    return $name;
+                }
+            ],
+            [
+                'attribute' => 'factoryId',
+                'value' => function ($data) {
+                    $name = Factory::getFactoryById($data->factoryId);
+                    return $name;
+                }
+            ],
+            [
+                'attribute'=>'images',
+                'label'=>'images',
+                'format'=>'raw',
+                'value' => function ($data) {
+//                        $baseUrl = Yii::$app->params['url'];
+                    $url = $data->images;
+                    return Html::img($url, ['alt'=>'myImage','height'=>'100']);
+                }
+            ],
             'price',
             'saleOf',
             'startSale',
@@ -48,9 +71,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'secondaryCamera',
             'pin',
             'description',
-            'content',
-            'status',
-            'dateCreate',
+//            'content',
+            [
+                'attribute' => 'status',
+                'value' => function ($data) {
+                    $result = ($data['status'] == 0) ? 'Không hoạt động' : 'Đang hoạt động';
+                    return $result;
+                }
+            ],
+            [
+                'attribute' => 'dateCreate',
+                'value' => function ($data) {
+                    $result = date('d/m/Y', $data['dateCreate']);
+                    return $result;
+                }
+            ],
         ],
     ]) ?>
 

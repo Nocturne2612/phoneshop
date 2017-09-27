@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Factory */
 
-$this->title = 'Update Factory: ' . $model->facId;
-$this->params['breadcrumbs'][] = ['label' => 'Factories', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->facId, 'url' => ['view', 'id' => $model->facId]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Cập nhật: ' . $model->facName;
+$this->params['breadcrumbs'][] = ['label' => 'Thương hiệu', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->facName, 'url' => ['view', 'id' => $model->facId]];
+$this->params['breadcrumbs'][] = 'Cập nhật';
 ?>
 <div class="factory-update">
 

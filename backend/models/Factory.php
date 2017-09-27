@@ -42,11 +42,11 @@ class Factory extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'facId' => 'Fac ID',
-            'facName' => 'Fac Name',
+            'facId' => 'ID',
+            'facName' => 'Thương hiệu',
             'logo' => 'Logo',
-            'status' => 'Status',
-            'dateCreate' => 'Date Create',
+            'status' => 'Trạng thái',
+            'dateCreate' => 'Ngày tạo',
         ];
     }
 
@@ -55,5 +55,14 @@ class Factory extends \yii\db\ActiveRecord
                 ->where(['status'=>'1'])
                 ->all();
         return $data;
+    }
+    public function getFactoryById($id)
+    {
+        if ($id == null) {
+            return "Root";
+        } else {
+            $data = Factory::find()->asArray()->where('facId=:facId', ['facId' => $id])->one();
+            return $data["facName"];
+        }
     }
 }
