@@ -33,17 +33,17 @@ class WishlistController extends Controller
      * Lists all Wishlist models.
      * @return mixed
      */
-    public function actionAdd($id){
-        $model= new Wishlist();
-        $model->userId=Yii::$app->user->id;
-        $model->proId=$id;
-        $model->dateCreate=time();
-        $model->status=1;
-        if(!($model->save())){
-            echo "lỗi";
-        }
+    // public function actionAdd($id){
+    //     $model= new Wishlist();
+    //     $model->userId=Yii::$app->user->id(); 
+    //     $model->proId=$id;
+    //     $model->dateCreate=time();
+    //     $model->status=1;
+    //     if(!($model->save())){
+    //         echo "lỗi";
+    //     }
 
-    }
+    // }
 
     // public function actionIndex()
     // {
@@ -73,18 +73,20 @@ class WishlistController extends Controller
     //  * If creation is successful, the browser will be redirected to the 'view' page.
     //  * @return mixed
     //  */
-    // public function actionCreate()
-    // {
-    //     $model = new Wishlist();
+    public function actionAdd($id)
+    {
+        // echo Yii::$app->user->id;
+        // die();
 
-    //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    //         return $this->redirect(['view', 'id' => $model->wisId]);
-    //     } else {
-    //         return $this->render('create', [
-    //             'model' => $model,
-    //         ]);
-    //     }
-    // }
+        $model = new Wishlist();
+        $model->userId=Yii::$app->user->id; 
+        $model->proId=$id;
+        $model->dateCreate=time();
+        $model->status=1;
+        if(!($model->save())){
+            echo "lỗi";
+        } 
+    }
 
     // /**
     //  * Updates an existing Wishlist model.
