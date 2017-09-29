@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Factory;
-use backend\models\search\FactorySearch;
+use backend\models\DtbOrder;
+use backend\models\OrderSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * FactoryController implements the CRUD actions for Factory model.
+ * DtbOrderController implements the CRUD actions for DtbOrder model.
  */
-class FactoryController extends Controller
+class DtbOrderController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class FactoryController extends Controller
     }
 
     /**
-     * Lists all Factory models.
+     * Lists all DtbOrder models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new FactorySearch();
+        $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class FactoryController extends Controller
     }
 
     /**
-     * Displays a single Factory model.
+     * Displays a single DtbOrder model.
      * @param integer $id
      * @return mixed
      */
@@ -57,19 +57,16 @@ class FactoryController extends Controller
     }
 
     /**
-     * Creates a new Factory model.
+     * Creates a new DtbOrder model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Factory();
-        
-        $time = time();
-        $model->dateCreate = $time;
+        $model = new DtbOrder();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->facId]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -78,7 +75,7 @@ class FactoryController extends Controller
     }
 
     /**
-     * Updates an existing Factory model.
+     * Updates an existing DtbOrder model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -88,7 +85,7 @@ class FactoryController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->facId]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -97,7 +94,7 @@ class FactoryController extends Controller
     }
 
     /**
-     * Deletes an existing Factory model.
+     * Deletes an existing DtbOrder model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +107,15 @@ class FactoryController extends Controller
     }
 
     /**
-     * Finds the Factory model based on its primary key value.
+     * Finds the DtbOrder model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Factory the loaded model
+     * @return DtbOrder the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Factory::findOne($id)) !== null) {
+        if (($model = DtbOrder::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

@@ -42,26 +42,14 @@ class Category extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'catId' => 'Cat ID',
-            'catName' => 'Cat Name',
-            'parentId' => 'Parent ID',
-            'status' => 'Status',
-            'dateCreate' => 'Date Create',
+            'catId' => 'ID',
+            'catName' => 'Tên danh mục',
+            'parentId' => 'Danh mục cha',
+            'status' => 'Trạng thái',
+            'dateCreate' => 'Ngày tạo',
         ];
     }
-    // public $data;
-    // public function getCategoryParent($parent=0,$level=""){
-    //     $result=Category::find()->asArray()->where('parentId = :parent',['parent'=>$parent])->all();
-    //     $level.="-";
-    //     foreach ($result as $key => $value) {
-    //         if($parent==0){
-    //             $level="";
-    //         }
-    //         $this->data[$value["catId"]] = $level . $value["catName"];
-    //         self::getCategoryParent($value["catId"],$level);// đệ qui gọi lại hàm chính nó
-    //     }
-    //     return $this->data;
-    // }
+
 
 
 
@@ -90,5 +78,15 @@ class Category extends \yii\db\ActiveRecord
             self::getCategoryParent($value["catId"], $level); // đệ quy gọi lại hàm chính nó
         }
         return $this->data;
+    }
+
+    public function getCategoryBy($id)
+    {
+        if ($id == null) {
+            return "Root";
+        } else {
+            $data = Category::find()->asArray()->where('catId=:catId', ['catId' => $id])->one();
+            return $data["catName"];
+        }
     }
 }

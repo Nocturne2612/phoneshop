@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Factory */
 
-$this->title = 'Create Factory';
-$this->params['breadcrumbs'][] = ['label' => 'Factories', 'url' => ['index']];
+$this->title = 'Tạo mới';
+$this->params['breadcrumbs'][] = ['label' => 'Thương hiệu', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="factory-create">

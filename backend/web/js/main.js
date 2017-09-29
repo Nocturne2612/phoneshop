@@ -40,7 +40,7 @@ jQuery(document).ready(function($) {
   });
   $('#media-modal').on('hidden.bs.modal', function () {
     imgSrc = $("#imageFile").val(); //lấy giá trị link trong textFile
-    //gán ngược giá trị lại fomr ô img
+    //gán ngược giá trị lại form ô img
     $("#previewImg").attr({ 
       'src':imgSrc
     });

@@ -2,12 +2,13 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use backend\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Category */
 
-$this->title = $model->catId;
-$this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['index']];
+$this->title = $model->catName;
+$this->params['breadcrumbs'][] = ['label' => 'Danh mục sản phẩm', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-view">
@@ -15,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->catId], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->catId], [
+        <?= Html::a('Sửa', ['update', 'id' => $model->catId], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Xóa', ['delete', 'id' => $model->catId], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Bạn có chắc muốn xóa mục này?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -30,9 +31,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'catId',
             'catName',
-            'parentId',
-            'status',
-            'dateCreate',
+            [
+                'attribute' => 'parentId',
+                'value' => function ($data) {
+                    $name = Category::getCategoryBy($data->parentId);
+                    return $name;
+                }
+            ],
+            [
+                'attribute' => 'status',
+                'value' => function ($data) {
+                    $result = ($data['status'] == 0) ? 'Không hoạt động' : 'Đang hoạt động';
+                    return $result;
+                }
+            ],
+            [
+                'attribute' => 'dateCreate',
+                'value' => function ($data) {
+                    $result = date('d/m/Y',$data['dateCreate']);
+                    return $result;
+                }
+            ],
         ],
     ]) ?>
 

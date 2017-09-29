@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Category */
 
-$this->title = 'Update Category: ' . $model->catId;
-$this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->catId, 'url' => ['view', 'id' => $model->catId]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Cập nhật: ' . $model->catName;
+$this->params['breadcrumbs'][] = ['label' => 'Danh mục sản phẩm', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->catName, 'url' => ['view', 'id' => $model->catId]];
+$this->params['breadcrumbs'][] = 'Cập nhật';
 ?>
 <div class="category-update">
 

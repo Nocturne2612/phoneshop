@@ -42,12 +42,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'userId',
-            'image',
+            [
+                'attribute'=>'image',
+                'label'=>'Image',
+                'format'=>'raw',
+                'value' => function ($data) {
+
+
+                    $url = $data->image;
+//                    $baseUrl = Yii::$app->params[$url];
+//                    echo "<pre>"; var_dump($baseUrl); die;
+                    return Html::img($url, ['alt'=>'myImage','height'=>'100']);
+                }
+            ],
             'summary',
 //            'content',
             [
                 'attribute' => 'status',
-//                'contentOptions' => ['class' => 'label label-blue'],
                 'value' => function ($data) {
                     $result = ($data['status'] == 0) ? 'Không hoạt động' : 'Đang hoạt động';
                     return $result;
