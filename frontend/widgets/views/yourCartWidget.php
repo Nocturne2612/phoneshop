@@ -1,32 +1,42 @@
+<?php 
+    $totalAmount=$total=0;
+    if (is_array($infoCart) || is_object($infoCart)){
+        foreach (($infoCart) as $key => $value) {
+            $totalAmount +=$value['sl']; // in ra số lượng sản phẩm mua
+            $total +=$value['price'] * $value['sl']; // tính tổng số tiền mà khách hàng mua
+        }
+    }
+
+ ?>
+
+
 <div class="mini-cart">
     <div class="top-cart-title">
         <a href="cart.html" class="dropdown-toggle" data-toggle="dropdown">
             your cart
-            <span class="price">$45.00</span>
+            <span class="price">$<span class="total"><?php echo $total; ?></span>.00</span>
         </a>
+        <div class="amount" style="position: absolute; color: red; top:5px;left: 30px; font-weight: bold; width: 15px;height: 15px; background-color: yellow; text-align: center; border-radius: 50px;"><?php echo $totalAmount ?>
+            
+        </div>
+
         <div class="dropdown-menu dropdown-menu-right">
             <div class="cart-listing">
-                <div class="media">
-                    <div class="media-left"><a href="#"><img src="frontend/web/common/images/products/11.jpg" alt="" class="img-responsive"></a></div>
+            <?php 
+                if (is_array($infoCart) || is_object($infoCart)){
+                foreach (($infoCart) as $key => $value) { ?>
+                <div class="media" id="item_<?= $key ?>" >
+                    <div class="media-left"><a href="#"><img  id="#load" src="<?php echo $value['images'] ?>" class="img-responsive" alt="<?php echo $value['proName'] ?>"></a></div>
                     <div class="media-body">
-                        <button type="button" class="remove-cart-item" >&times;</button>
-                        <h4>Accumsan elit</h4>
-                        <div class="mini-cart-qty">Qty:2</div>
-                        <div class="mini-cart-price">$ 64.00</div>
+                        <a href="javascript:void(0)" class="remove-cart-item" onclick="delCart(<?= $key ?>)"" >&times;</a>
+                        <h4><?php echo $value['proName'] ?></h4>
+                        <div class="mini-cart-qty">Qty:<?php echo $value['sl'] ?></div>
+                        <div class="mini-cart-price">$ <?php echo $value['sl'] * $value['price']  ?>.00</div>
                     </div>
                 </div>
-                <div class="media">
-                    <div class="media-left"><a href="#"><img src="frontend/web/common/images/products/13.jpg" class="img-responsive" alt=""></a></div>
-                    <div class="media-body">
-                        <button type="button" class="remove-cart-item" >&times;</button>
-                        <h4>Accumsan elit</h4>
-                        <div class="mini-cart-qty">Qty:2</div>
-                        <div class="mini-cart-price">$ 64.00</div>
-                    </div>
-                </div>
+            <?php }} ?>
             </div><!-- /.cart-listing -->
-            <div class="mini-cart-subtotal">Shipping: <span class="price">$5.00</span></div>
-            <div class="mini-cart-subtotal">Total: <span class="price">$200.00</span></div>
+            <div class="mini-cart-subtotal">Total: <span class="price">$<span class="total"><?php echo $total; ?></span>.00</span></div>
             <div class="checkout-btn">
                 <a href="#" class="btn btn-default btn-md fwb">CHECK OUT</a>
             </div>

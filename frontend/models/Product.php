@@ -103,4 +103,5 @@ class Product extends \yii\db\ActiveRecord
          $data = Product::find()->asArray()->where('proId=:proId',['proId'=>$proId])->one();
          return $data;
      }
+     
 }

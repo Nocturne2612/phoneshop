@@ -24,7 +24,7 @@
 							<div class="product-img-box">
 								<p class="product-image">
 									<a href="images/products/1.jpg" class="cloud-zoom" id="ma-zoom1">
-										<img src="<?php echo $data['images'] ?>" alt="<?php echo $data['proName'] ?>" title="<?php echo $data['proName'] ?>" />
+										<img id="img_<?=$data['proId']?>" src="<?php echo $data['images'] ?>" alt="<?php echo $data['proName'] ?>" title="<?php echo $data['proName'] ?>" />
 									</a>
 								</p>
 								<div class="more-views thumbnail-container">
@@ -123,8 +123,8 @@
 										</div><!-- /input-group -->
 									</div>
 								</div>
-								<button type="submit" class="btn btn-danger btn-cart">Add to cart</button>
-								<button type="button" class="btn btn-default btn-wishlist">Add to wishlist</button>
+								<a href="javascript:void(0)" onclick="addCart(<?= $data['proId'] ?>)" class="btn btn-danger btn-cart">Add to cart</a>
+								<button type="button" class="btn btn-default btn-wishlist " >Add to wishlist</button>
 								<button type="button" class="btn btn-default btn-compare">Add to compare</button>
 							</form>
 						</div><!-- /.product-shop -->

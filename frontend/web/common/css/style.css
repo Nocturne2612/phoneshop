@@ -343,6 +343,7 @@ a:focus {
     color: #fff;
     margin: 12px 20px 12px 0;
     float: left;
+    position: relative;
 }
 .top-cart-title .dropdown-toggle {
     text-decoration: none;

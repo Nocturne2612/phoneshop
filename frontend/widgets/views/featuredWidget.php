@@ -21,14 +21,14 @@
                             <div class='new-icon'><span>new</span></div>
                         </div>
                         <a href="<?= Yii::$app->homeUrl.'product/detail?id='.$value['proId']?>" title="<?php echo $value["proName"] ?>" class="product-image">
-                            <img width="195" height="231" src="<?php echo $value["images"] ?>" alt="<?php echo $value["proName"] ?>" />
+                            <img id="img_<?=$value['proId']?>" width="195" height="231" src="<?php echo $value["images"] ?>" alt="<?php echo $value["proName"] ?>" />
                         </a>
                         <div class="box-hover">
                             <ul class="add-to-links">
-                                <li><a href="#" class="link-quickview">Quick View</a></li>
-                                <li><a href="#" class="link-wishlist">Add to Wishlist</a></li>
-                                <li><a href="#" class="link-compare">Add to Compare</a></li>
-                                <li><a href="#" class="link-cart">Add to Cart</a></li>
+                                <li><a href="javascript:void(0)" class="link-quickview">Quick View</a></li>
+                                <li><a href="javascript:void(0)" class="link-wishlist" onclick="addWishlist(<?= $value["proId"] ?>)">Add to Wishlist</a></li>
+                                <li><a href="javascript:void(0)" class="link-compare">Add to Compare</a></li>
+                                <li><a href="javascript:void(0)" class="link-cart" onclick="addCart(<?= $value["proId"] ?>)">Add to Cart</a></li>
                             </ul>
                         </div>
                     </div>
@@ -37,11 +37,11 @@
                         <div class="price-box">
                             <p class="special-price">
                                 <span class="price-label">Special Price</span>
-                                <span class="price">$<?php echo $value["saleOf"] ?>.00</span>
+                                <span id="specialPrice_<?=$value['proId']?>" class="price">$<?php echo $value["saleOf"] ?>.00</span>
                             </p>
                             <p class="old-price">
-                                <span class="price-label">Regular Price: </span>
-                                <span class="price">$<?php echo $value["price"] ?>.00</span>
+                                <span  class="price-label">Regular Price: </span>
+                                <span id="regularPrice_<?=$value['proId']?>" class="price">$<?php echo $value["price"] ?>.00</span>
                             </p>
                         </div>
                         <div class="ratings">
