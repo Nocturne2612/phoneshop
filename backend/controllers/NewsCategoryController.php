@@ -65,10 +65,7 @@ class NewsCategoryController extends Controller
     {
         $model = new NewsCategory();
         $data = $model->getNewsCategory();
-
         $model->dateCreate = time();
-        $model->updateAt = time();
-
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->newsCatId]);

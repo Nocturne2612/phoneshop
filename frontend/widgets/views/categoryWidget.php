@@ -9,7 +9,7 @@
 ?>
 
 <div class="navleft-container">
-    <div class="mega-menu-title"><h3>Category</h3></div>
+    <div class="mega-menu-title"><h3>Danh mục</h3></div>
     <div class="mega-menu-category">
         <ul class="nav">
             <?php  

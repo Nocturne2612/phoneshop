@@ -55,8 +55,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Html::img($url, ['alt'=>'myImage','height'=>'100']);
                 }
             ],
-            'summary',
-//            'content',
+            'summary:raw',
+//            'content:raw',
             [
                 'attribute' => 'status',
                 'value' => function ($data) {

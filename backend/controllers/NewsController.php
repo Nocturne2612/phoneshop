@@ -53,6 +53,9 @@ class NewsController extends Controller
      */
     public function actionView($id)
     {
+//        echo '<pre>';
+//        var_dump('ádasfa');
+//        die;
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -68,15 +71,8 @@ class NewsController extends Controller
         $model = new News();
         $getNewsCategory = new NewsCategory();
         $data= $getNewsCategory->getNewsCategory();
-//        $User = new User();
-//        $getUser = $User->getAllUser;
-//        $model->userId = ;
-//        echo "<pre>";
-//        var_dump();
-//        die;
         $model->dateCreate= time();
-        $model->updateAt= time();
-        
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->newsId]);
         } else {
@@ -98,8 +94,7 @@ class NewsController extends Controller
         $model = $this->findModel($id);
         $getNewsCategory = new NewsCategory();
         $data= $getNewsCategory->getNewsCategory();
-        $time=time();
-        $model->updateAt= $time;
+        $model->updateAt= time();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->newsId]);

@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'userId')->textInput() ?>
 
     <?= $form->field($model, 'image')->textInput(['maxlength' => true,'id'=>"imageFile",'placeholder'=>'click chọn ảnh']) ?>
-
+    <img src="<?= $model->image?>" alt="" id="previewImage" width="200" style="display: block"><br/>
     <?= $form->field($model, 'summary')->textarea()?>
 
     <?= $form->field($model, 'content')->textarea(['id' =>'content']) ?>

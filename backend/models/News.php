@@ -34,10 +34,11 @@ class News extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['newsCatId', 'userId', 'name', 'summary', 'content', 'dateCreate', 'updateAt'], 'required'],
+            [['newsCatId', 'userId', 'name', 'summary', 'content'], 'required'],
             [['newsCatId', 'userId', 'status', 'dateCreate', 'updateAt'], 'integer'],
             [['content'], 'string'],
-            [['name', 'image', 'summary'], 'string', 'max' => 255],
+            [['name', 'image'], 'string', 'max' => 255],
+            [['summary'], 'string', 'max' => 2555],
             [['name'], 'unique'],
         ];
     }
