@@ -6,7 +6,7 @@ use Yii\web\Session;
 use frontend\models\Product;
 class Cart 
 {
-    public function addcart($id)
+    public function addcart($id,$qty=1)
     {
     	$data = new Product();
     	$dataProduct=$data->getProductById($id);
@@ -18,7 +18,7 @@ class Cart
         		'color'=>$dataProduct['color'],
         		'ram'=>$dataProduct['ram'],
         		'rom'=>$dataProduct['rom'],
-        		'sl'=>1,
+        		'sl'=>$qty,
         	];
         }else{
         	$cart= Yii::$app->session['cart']; //lần mua tiếp theo session['cart'] đã tồn tại sp đã có trong cart +1
@@ -30,7 +30,7 @@ class Cart
 	        		'color'=>$dataProduct['color'],
 	        		'ram'=>$dataProduct['ram'],
 	        		'rom'=>$dataProduct['rom'],
-	        		'sl'=>(int)$cart[$id]['sl'] + 1,
+	        		'sl'=>(int)$cart[$id]['sl'] + $qty,
 
         		];
         	}else{    // lần mua khi session['cart'] đã tồn tại và sp chưa có trong cart thì sp sẽ có sl bằng 1
@@ -41,7 +41,7 @@ class Cart
 	        		'color'=>$dataProduct['color'],
 	        		'ram'=>$dataProduct['ram'],
 	        		'rom'=>$dataProduct['rom'],
-	        		'sl'=> 1,
+	        		'sl'=> $qty,
         		];
         	}
         }
@@ -59,4 +59,24 @@ class Cart
         }
     }
 
+    public function updateItem($id,$amount){
+        // echo $id."-".$amount; lấy ra giá trị bên controller get dc trên url trả về
+        $session=Yii::$app->session;
+        $cart=$session['cart'];
+        if(array_key_exists($id,$cart)){
+            $cart[$id]=[
+                'proName'=>$cart[$id]['proName'],
+                'images'=>$cart[$id]['images'],
+                'price'=>$cart[$id]['price'],
+                'color'=>$cart[$id]['color'],
+                'ram'=>$cart[$id]['ram'],
+                'rom'=>$cart[$id]['rom'],
+                'sl'=>$amount
+            ];
+            $session['cart'] = $cart;
+
+        }
+    }
+
 }
+?>

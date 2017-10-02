@@ -10,7 +10,13 @@
 
 <div class="navleft-container">
     <div class="mega-menu-title"><h3>Category</h3></div>
-    <div class="mega-menu-category">
+    <?php 
+    $a='/phoneshop/';
+    $b= $_SERVER['REQUEST_URI'];
+    $c='style="display:none;"';
+
+     ?>
+    <div class="mega-menu-category " <?php if($a != $b )  echo $c    ?>>
         <ul class="nav">
             <?php  
                 foreach ($catParent as $value) {

@@ -24,7 +24,7 @@ use yii\helpers\Html;
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a title="My Account" href="account.html">My Account</a></li>
                         <li><a title="My Wishlist" href="wishlist.html">My Wishlist</a></li>
-                        <li><a title="My Cart" href="cart.html">My Cart</a></li>
+                        <li><a title="My Cart" href="<?= Yii::$app->homeUrl.'shopping/viewcart'?>">My Cart</a></li>
                         <li><a title="Checkout" href="checkout.html">Checkout</a></li>
                         <li><a title="Testimonial" href="testimonial.html">Testimonial</a></li>
                     </ul>

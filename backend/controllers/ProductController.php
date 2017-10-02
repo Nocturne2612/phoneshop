@@ -71,6 +71,12 @@ class ProductController extends Controller {
         if (empty($data)) {
             $data = array();
         }
+        $modelCat = new Category();
+        $dataCat = $modelCat->getAllCategoryParent();
+
+        if(empty($dataCat)){
+            $dataCat = array();
+        }
         //lấy ra mảng của factory
         $modelFac = new Factory();
         $dataFac= ArrayHelper:: map($modelFac->getAllFac(),'facId','facName');
@@ -78,11 +84,36 @@ class ProductController extends Controller {
         $time = time();
         $model->dateCreate = $time;
 
-       if ($model->load(Yii::$app->request->post()) && $model->save())
-        {  
-            return $this->redirect(['view', 'id' => $model->proId]); 
-        }
-        else {
+       // if ($model->load(Yii::$app->request->post()) && $model->save())
+       //  {  
+       //      return $this->redirect(['view', 'id' => $model->proId]); 
+       //  }
+       //  else {
+       //      return $this->render('create', [
+       //          'model' => $model,
+       //          'data' => $data,
+       //          'dataFac'=>$dataFac,
+       //      ]);
+       //  }
+        if ($model->load(Yii::$app->request->post())) {
+            $data = Yii::$app->request->post();
+            $model->startSale = date("Y-m-d", strtotime($data["Product"]["startSale"])); // đổi về định dạng d-m-y
+            $model->endSale = date("Y-m-d", strtotime($data["Product"]["endSale"]));
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->pro_id]);
+            }else{
+                // echo "<pre>";
+                // print_r($model->errors);
+                
+                return $this->render('create', [
+                $model->errors,
+                'model' => $model,
+                'data' => $data,
+                'dataFac'=>$dataFac,
+            ]);
+
+            }
+        } else {
             return $this->render('create', [
                 'model' => $model,
                 'data' => $data,
