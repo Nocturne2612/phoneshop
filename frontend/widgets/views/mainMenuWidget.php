@@ -8,14 +8,14 @@
 
     $new = new NewsCategory();
     $catNew = $new->getNewsBy();
-    $catNewNull = $new->getNews();
+    // $catNewNull = $new->getNews();
 
     // echo "<prE>";
     // print_r($catNewNull);
     // die;
 ?>
 <div class="col-md-9">
-    <ul class="menu clearfix visible-lg visible-md">
+    <ul class="menu clearfix visible-lg visible-md" ">
         <li><a href="<?=Yii::$app->homeUrl?>">Home</a></li>
         
         <?php  
@@ -44,12 +44,12 @@
 
        <!--  Category News -->
         <?php  
-            foreach ($catNewNull as $value) {
+            foreach ($catNew  as $value) {
         ?>
         <li>
-            <a href="<?=Yii::$app->homeUrl?>new/<?php echo $value["newsCatId"] ?>"><?php echo $value["newsCatName"] ?></a>
+            <a href="<?=Yii::$app->homeUrl?>news/listnew?id=<?php echo $value["newsCatId"] ?>"><?php echo $value["newsCatName"] ?></a>
             <?php  
-                $catSubNew = $new->getNewsBy();
+                $catSubNew = $new->getNewsBy($value["newsCatId"]);
                
                 if($catSubNew){
             ?>
@@ -57,7 +57,7 @@
                     <?php  
                         foreach ($catSubNew as $val) {
                     ?>
-                        <li><a href="<?=Yii::$app->homeUrl?>new/<?php echo $val["newsCatId"] ?>"><?php echo $val["newsCatName"] ?></a></li>
+                        <li><a href="<?=Yii::$app->homeUrl?>news/listnew?id=<?php echo $val["newsCatId"] ?>"><?php echo $val["newsCatName"] ?></a></li>
                     <?php } ?> 
                 </ul>
 

@@ -71,12 +71,6 @@ class ProductController extends Controller {
         if (empty($data)) {
             $data = array();
         }
-        $modelCat = new Category();
-        $dataCat = $modelCat->getAllCategoryParent();
-
-        if(empty($dataCat)){
-            $dataCat = array();
-        }
         //lấy ra mảng của factory
         $modelFac = new Factory();
         $dataFac= ArrayHelper:: map($modelFac->getAllFac(),'facId','facName');
@@ -95,23 +89,13 @@ class ProductController extends Controller {
        //          'dataFac'=>$dataFac,
        //      ]);
        //  }
-        if ($model->load(Yii::$app->request->post())) {
+        if ($model->load(Yii::$app->request->post())&& $model->validate()) {
             $data = Yii::$app->request->post();
             $model->startSale = date("Y-m-d", strtotime($data["Product"]["startSale"])); // đổi về định dạng d-m-y
             $model->endSale = date("Y-m-d", strtotime($data["Product"]["endSale"]));
-            if($model->save()){
-                return $this->redirect(['view', 'id' => $model->pro_id]);
-            }else{
-                // echo "<pre>";
-                // print_r($model->errors);
-                
-                return $this->render('create', [
-                $model->errors,
-                'model' => $model,
-                'data' => $data,
-                'dataFac'=>$dataFac,
-            ]);
-
+            if($model->save(false))
+            {
+                return $this->redirect(['view', 'id' => $model->proId]);
             }
         } else {
             return $this->render('create', [
@@ -141,16 +125,19 @@ class ProductController extends Controller {
         $modelFac = new Factory();
         $dataFac= ArrayHelper:: map($modelFac->getAllFac(),'facId','facName');
 
-       if ($model->load(Yii::$app->request->post()) && $model->save())
-        {
-            return $this->redirect(['view', 'id' => $model->proId]);
+       if ($model->load(Yii::$app->request->post())&& $model->validate()) {
+            $data = Yii::$app->request->post();
+            $model->startSale = date("Y-m-d", strtotime($data["Product"]["startSale"])); // đổi về định dạng d-m-y
+            $model->endSale = date("Y-m-d", strtotime($data["Product"]["endSale"]));
+            if($model->save(false)){
+                return $this->redirect(['view', 'id' => $model->proId]);
+            }
 
         } else {
-
             return $this->render('update', [
-                        'model' => $model,
-                        'data' => $data,
-                        'dataFac'=>$dataFac,
+                'model' => $model,
+                'data' => $data,
+                'dataFac'=>$dataFac,
             ]);
         }
     }

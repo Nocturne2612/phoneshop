@@ -52,13 +52,13 @@ class NewsCategory extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getNewsBy($newsCatId=1){
+    public function getNewsBy($newsCatId=0){
         $data = NewsCategory::find()->asArray()->where('parentId=:newsCatId',['newsCatId'=>$newsCatId])->all();
         return $data;
     }
 
-    public function getNews(){
-        $data = NewsCategory::find()->asArray()->where( ['parentId' => null])->all();
-        return $data;
-    }  
+    // public function getNews(){
+    //     $data = NewsCategory::find()->asArray()->where( ['parentId' => null])->all();
+    //     return $data;
+    // }  
 }

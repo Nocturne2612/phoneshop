@@ -99,9 +99,20 @@ class Product extends \yii\db\ActiveRecord
     }
     
     //lấy deltail product
-     public function getProductById($proId){
-         $data = Product::find()->asArray()->where('proId=:proId',['proId'=>$proId])->one();
-         return $data;
-     }
+    public function getProductById($proId){
+        $data = Product::find()
+                ->asArray()
+                ->where('proId=:proId',['proId'=>$proId])
+                ->one();
+        return $data;
+    }
+    public function getProductBySearchPrice($firstPrice,$lastprice){
+        $data = Product::find()
+                ->asArray()
+                ->where(['BETWEEN','price',$firstPrice,$lastprice])
+                ->all();
+        return $data;
+    }
+   
      
 }

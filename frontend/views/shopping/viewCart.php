@@ -1,6 +1,6 @@
  <?php 
 // echo "<pre>";
-// print_r($cart);
+// print_r($province);
 // die();
 
   ?>
@@ -35,9 +35,13 @@
  							</tr>
  						</thead>
  						<tbody>
- 						<?php foreach ($cart as $key => $value) {
+ 						<?php 
+ 						if($cart){
+ 						$subtotal=0;
 
- 						?>
+	 						foreach ($cart as $key => $value) {
+
+	 						?>
  							<tr>
  								<td class="text-center"><a class="btn-remove" href="javascript:void(0)" onclick="delCart(<?php echo $key ?>)"><span class="fa fa-trash-o"></span></a></td>
  								<td><a class="product-image" title="Primis in faucibus" href="#">
@@ -60,69 +64,17 @@
  											</span>
  										</div><!-- /input-group -->
  									</td>
- 									<td class="subtotal">$<?php echo $value['price'] ?>.00</td>
- 									<td class="grandtotal">$<?php echo $value['price'] * $value['sl'] ?>.00</td>
+ 									<td class="subtotal">$<?php echo $value['price'] ?></td>
+ 									<td class="grandtotal">$<?php echo $value['price'] * $value['sl'];
+ 									 $subtotal +=$value['price'] * $value['sl'];?></td>
  								</tr>
  							</tbody>
- 							<?php } ?>
+ 							<?php }} ?>
  						</table>
  					</div>
- 					<div class="text-right">
- 						<a href="#" class="btn btn-default btn-md">CONTINUE SHOPPING</a>
- 						<button type="submit" class="btn btn-danger btn-md">UPDATE SHOPPING CART</button>
- 					</div>
+ 					
  					<div class="line2"></div>
- 					<div class="row">
- 						<div class="col-sm-4">
- 							<h4>ESTIMATE SHIPPING AND TAX</h4>
- 							<p class="text-muted">Enter your destination to get shipping &amp; tax</p>
- 							<div class="form-group">
- 								<label class="control-label">Country <em>*</em></label>
- 								<select class="form-control">
- 									<option>-- Select options  --</option>
- 								</select>
- 							</div>
- 							<div class="form-group">
- 								<label class="control-label">State/Province <em>*</em></label>
- 								<select class="form-control">
- 									<option>-- Select options  --</option>
- 								</select>
- 							</div>
- 							<div class="form-group">
- 								<label class="control-label">Zip/Postal Code</label>
- 								<input type="text" class="form-control">
- 							</div>
- 							<div class="form-group">
- 								<button type="button" class="btn btn-default btn-md">GET A QUOTE</button>
- 							</div>
- 						</div>
- 						<div class="col-sm-4">
- 							<h4>DISCOUNT CODE</h4>
- 							<p class="text-muted">Enter your coupon code if you have one</p>
- 							<div class="form-group">
- 								<label class="control-label">&nbsp;</label>
- 								<input type="text" class="form-control">
- 							</div>
- 							<div class="form-group">
- 								<button type="button" class="btn btn-default btn-md">APPLY COUPON</button>
- 							</div>
- 						</div>
- 						<div class="col-sm-4">
- 							<table class="table table-cart-total">
- 								<tr>
- 									<td>Subtotal:</td>
- 									<td class="text-right">$250.00</td>
- 								</tr>
- 								<tr>
- 									<td>Grandtotal:</td>
- 									<td class="text-right">$250.00</td>
- 								</tr>
- 							</table>
- 							<div class="text-right">
- 								<p><button type="button" class="btn btn-default btn-md fwb">PROCCED TO CHECKOUT</button></p>
- 								<p><a href="#" class="text-muted">Checkout with multiples address</a></p>
- 							</div>
- 					</div>
+
  				</div>
  			</form>
  			

@@ -149,7 +149,7 @@ AppAsset::register($this);
 
 <?php $this->endBody() ?>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="shoppingcart" style="z-index: 9999;">
+<!-- <div class="modal fade" tabindex="-1" role="dialog" id="shoppingcart" style="z-index: 9999;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -170,14 +170,42 @@ AppAsset::register($this);
     </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
+    </div>
+  </div>
+</div>
+ -->
 <script type="text/javascript">
+
     var urlBase = "http://localhost/phoneshop/";
+    function getDistrict(id){
+        $.get('<?php echo Yii::$app->homeUrl.'district/getdistrict' ?>',{'id':id},function(data){
+            $('#district').html(data);
+         });
+        
+    }
+    function getWard(id){
+        $.get('<?php echo Yii::$app->homeUrl.'ward/getward' ?>',{'id':id},function(data){
+            $('#ward').html(data);
+         });
+        
+    }
+
+    function getDistrictShip(id){
+        $.get('<?php echo Yii::$app->homeUrl.'district/getdistrict' ?>',{'id':id},function(data){
+            $('#districtShip').html(data);
+         });
+        
+    }
+    function getWardShip(id){
+        $.get('<?php echo Yii::$app->homeUrl.'ward/getward' ?>',{'id':id},function(data){
+            $('#wardShip').html(data);
+         });
+        
+    }
+
+
+
     function addWishlist(id){
         $.get('<?php echo Yii::$app->homeUrl.'wishlist/add' ?>',{'id':id},function(data){
             alert("Thêm Thành Công Vào Wishlist")
@@ -248,6 +276,18 @@ AppAsset::register($this);
         }
         
     }
+    function searchPrice(first,last){
+        first= $('#first_price').val();
+        last= $('#last_price').val();
+        // alert(1);
+        $.get('<?php echo Yii::$app->homeUrl.'product/searchprice/?first='?>'+first+"&last="+last,function(data){
+        var url = '<?php echo Yii::$app->homeUrl.'product/searchprice/?first='?>'+first+"&last="+last;
+        $(location).attr('href', url);   
+
+        });
+        
+    }
+    
 
 </script>
 

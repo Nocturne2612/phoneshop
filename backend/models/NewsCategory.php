@@ -52,24 +52,16 @@ class NewsCategory extends \yii\db\ActiveRecord
 
     public $data;
 
-    public function getNewsCategory($parent = null, $level = "")
+    public function getNewsCategory($parent = 0, $level = "")
     {
 
-        if ($parent == null) {
-            $result = NewsCategory::find()
-                ->where(['is', 'parentId', null])
-                ->asArray()
-                ->all();
-        } else {
-            $result = NewsCategory::find()
+        $result = NewsCategory::find()
                 ->where('parentId = :parent', ['parent' => $parent])
                 ->asArray()
                 ->all();
-        }
-
         $level .= "|--";
         foreach ($result as $value) {
-            if ($parent == null) {
+            if ($parent == 0) {
                 $level = "";
             }
             $this->data[$value["newsCatId"]] = $level . $value["newsCatName"];
@@ -80,7 +72,7 @@ class NewsCategory extends \yii\db\ActiveRecord
 
     public function getNewsCategoryBy($id)
     {
-        if ($id == null) {
+        if ($id == 0) {
             return "Root";
         } else {
             $data = NewsCategory::find()->asArray()->where('newsCatId=:newsCatId', ['newsCatId' => $id])->one();

@@ -12,11 +12,9 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-    
     <?= $form->field($model, 'newsCatId')->dropDownList($data, ['prompt'=>'--Chọn danh mục--']) ?>
 
-    <?= $form->field($model, 'userId')->textInput() ?>
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'image')->textInput(['maxlength' => true,'id'=>"imageFile",'placeholder'=>'click chọn ảnh']) ?>
 
@@ -24,10 +22,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'content')->textarea(['id' =>'content']) ?>
 
-    <?= $form->field($model, 'status')->checkbox() ?>
+    <?= $form->field($model, 'status')->dropDownList(['1'=>'Đăng', '2'=>'Chưa Đăng'],['prompt'=>"-Trạng Thái -"]) ?> 
+
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Tạo mới' : 'Cập nhật', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

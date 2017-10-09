@@ -8,7 +8,7 @@ use backend\models\NewsCategory;
 /* @var $model backend\models\News */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Tin tức', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'News', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="news-view">
@@ -16,24 +16,20 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Sửa bài', ['update', 'id' => $model->newsId], ['class' => 'btn btn-primary']) ?>
-        <?=
-        Html::a('Xóa', ['delete', 'id' => $model->newsId], [
+        <?= Html::a('Update', ['update', 'id' => $model->newsId], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->newsId], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
-        ])
-        ?>
+        ]) ?>
     </p>
 
-    <?=
-    DetailView::widget([
+    <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'newsId',
-            'name',
             [
                 'attribute' => 'newsCatId',
                 'value' => function ($data) {
@@ -42,25 +38,30 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'userId',
+            'author',
+            'name',
             [
                 'attribute'=>'image',
-                'label'=>'Image',
+                'label'=>'image',
                 'format'=>'raw',
                 'value' => function ($data) {
-
-
+//                        $baseUrl = Yii::$app->params['url'];
                     $url = $data->image;
-//                    $baseUrl = Yii::$app->params[$url];
-//                    echo "<pre>"; var_dump($baseUrl); die;
                     return Html::img($url, ['alt'=>'myImage','height'=>'100']);
                 }
             ],
-            'summary',
-//            'content',
+            'summary:ntext',
+            'content:ntext',
             [
                 'attribute' => 'status',
                 'value' => function ($data) {
-                    $result = ($data['status'] == 0) ? 'Không hoạt động' : 'Đang hoạt động';
+                    $result=$data['status'];
+                    if($result == 1){
+                        $result= "Hoạt Động";
+                    }
+                    else{
+                        $result= "Chưa Đăng";
+                    }
                     return $result;
                 }
             ],
@@ -78,8 +79,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $result;
                 }
             ],
+
         ],
-    ])
-    ?>
+    ]) ?>
 
 </div>

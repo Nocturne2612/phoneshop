@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\DtbOrder;
+use backend\models\Order;
 use backend\models\OrderSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -63,7 +63,9 @@ class OrderController extends Controller
      */
     public function actionCreate()
     {
-        $model = new DtbOrder();
+        $model = new Order();
+        $time=time();
+        $model->created_at=$time;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -83,9 +85,10 @@ class OrderController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $time=time();
+        $model->updated_at=$time;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->idOrder]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -115,7 +118,7 @@ class OrderController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = DtbOrder::findOne($id)) !== null) {
+        if (($model = Order::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

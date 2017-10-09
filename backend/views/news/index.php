@@ -5,10 +5,10 @@ use yii\grid\GridView;
 use backend\models\NewsCategory;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\search\NewsSearch */
+/* @var $searchModel backend\models\NewsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Tin tức';
+$this->title = 'News';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="news-index">
@@ -17,48 +17,58 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Đăng bài mới', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create News', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?=
-    GridView::widget([
+    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'name',
-//            'newsCatId',
-            [
+
+            // 'newsId',
+             [
                 'attribute' => 'newsCatId',
                 'value' => function ($data) {
                     $name = NewsCategory::getNewsCategoryBy($data->newsCatId);
                     return $name;
                 }
             ],
-            'userId',
+            // 'userId',
+            'author',
+            'name',
+            // 'image',
+            // 'summary:ntext',
+            // 'content:ntext',
             [
-                'attribute'=>'image',
-                'label'=>'Image',
-                'format'=>'raw',
-                'value' => function ($data) {
-//                        $baseUrl = Yii::$app->params['url'];
-                        $url = $data->image;
-                        return Html::img($url, ['alt'=>'myImage','height'=>'100']);
-                 }
-            ],
-            // 'summary',
-            // 'content',
-             [
                 'attribute' => 'status',
-//                'contentOptions' => ['class' => 'label label-blue'],
                 'value' => function ($data) {
-                    $result = ($data['status'] == 0) ? 'Không hoạt động' : 'Đang hoạt động';
+                    $result=$data['status'];
+                    if($result == 1){
+                        $result= "Hoạt Động";
+                    }
+                    else{
+                        $result= "Chưa Đăng";
+                    }
                     return $result;
                 }
             ],
-            // 'dateCreate',
-            // 'updateAt',
+            
+            [
+                'attribute' => 'dateCreate',
+                'value' => function ($data) {
+                    $result = date('d/m/Y', $data['dateCreate']);
+                    return $result;
+                }
+            ],
+            [
+                'attribute' => 'updateAt',
+                'value' => function ($data) {
+                    $result = date('d/m/Y', $data['updateAt']);
+                    return $result;
+                }
+            ],
+
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]);
-    ?>
+    ]); ?>
 </div>

@@ -10,6 +10,7 @@ use Yii;
  * @property integer $newsId
  * @property integer $newsCatId
  * @property integer $userId
+ * @property string $author
  * @property string $name
  * @property string $image
  * @property string $summary
@@ -34,10 +35,10 @@ class News extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['newsCatId', 'userId', 'name', 'summary', 'content', 'dateCreate', 'updateAt'], 'required'],
+            [['newsCatId', 'userId', 'author', 'name', 'summary', 'content', 'dateCreate', 'updateAt'], 'required'],
             [['newsCatId', 'userId', 'status', 'dateCreate', 'updateAt'], 'integer'],
-            [['content'], 'string'],
-            [['name', 'image', 'summary'], 'string', 'max' => 255],
+            [['summary', 'content'], 'string'],
+            [['author', 'name', 'image'], 'string', 'max' => 255],
             [['name'], 'unique'],
         ];
     }
@@ -48,16 +49,17 @@ class News extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'newsId' => 'ID',
-            'newsCatId' => 'Danh mục',
-            'userId' => 'Tác giả',
-            'name' => 'Tên bài viết',
-            'image' => 'Hình ảnh',
-            'summary' => 'Mô tả',
-            'content' => 'Nội dung',
-            'status' => 'Trạng thái',
-            'dateCreate' => 'Ngày tạo',
-            'updateAt' => 'Ngày sửa',
+            'newsId' => 'News ID',
+            'newsCatId' => 'Danh Mục Tin',
+            'userId' => 'User ID',
+            'author' => 'Tác Giả',
+            'name' => 'Tên Bài Viết',
+            'image' => 'Ảnh',
+            'summary' => 'Tóm Tắt',
+            'content' => 'Nội Dung',
+            'status' => 'Trạng Thái',
+            'dateCreate' => 'Ngày Tạo Bài',
+            'updateAt' => 'Ngày Cập Nhật Bài',
         ];
     }
 }

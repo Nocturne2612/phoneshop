@@ -5,12 +5,12 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\DtbOrder;
+use backend\models\Order;
 
 /**
- * OrderSearch represents the model behind the search form about `backend\models\DtbOrder`.
+ * OrderSearch represents the model behind the search form about `backend\models\Order`.
  */
-class OrderSearch extends DtbOrder
+class OrderSearch extends Order
 {
     /**
      * @inheritdoc
@@ -18,8 +18,9 @@ class OrderSearch extends DtbOrder
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['status', 'customer_id', 'order_name', 'order_email', 'order_tel', 'order_add', 'deliv_name', 'deliv_tel', 'deliv_add', 'create_date', 'update_date', 'memo'], 'safe'],
+            [['idOrder', 'paymen_id', 'userId', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['fullName', 'name', 'province', 'district', 'ward', 'address', 'phone', 'email', 'otherInformation'], 'safe'],
+            [['totalMoney'], 'number'],
         ];
     }
 
@@ -41,7 +42,7 @@ class OrderSearch extends DtbOrder
      */
     public function search($params)
     {
-        $query = DtbOrder::find();
+        $query = Order::find();
 
         // add conditions that should always apply here
 
@@ -59,21 +60,24 @@ class OrderSearch extends DtbOrder
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'create_date' => $this->create_date,
-            'update_date' => $this->update_date,
+            'idOrder' => $this->idOrder,
+            'totalMoney' => $this->totalMoney,
+            'paymen_id' => $this->paymen_id,
+            'userId' => $this->userId,
+            'status' => $this->status,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'customer_id', $this->customer_id])
-            ->andFilterWhere(['like', 'order_name', $this->order_name])
-            ->andFilterWhere(['like', 'order_email', $this->order_email])
-            ->andFilterWhere(['like', 'order_tel', $this->order_tel])
-            ->andFilterWhere(['like', 'order_add', $this->order_add])
-            ->andFilterWhere(['like', 'deliv_name', $this->deliv_name])
-            ->andFilterWhere(['like', 'deliv_tel', $this->deliv_tel])
-            ->andFilterWhere(['like', 'deliv_add', $this->deliv_add])
-            ->andFilterWhere(['like', 'memo', $this->memo]);
+        $query->andFilterWhere(['like', 'fullName', $this->fullName])
+            ->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'province', $this->province])
+            ->andFilterWhere(['like', 'district', $this->district])
+            ->andFilterWhere(['like', 'ward', $this->ward])
+            ->andFilterWhere(['like', 'address', $this->address])
+            ->andFilterWhere(['like', 'phone', $this->phone])
+            ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'otherInformation', $this->otherInformation]);
 
         return $dataProvider;
     }

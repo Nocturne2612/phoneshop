@@ -14,7 +14,7 @@
     <div class="top-cart-title">
         <a href="cart.html" class="dropdown-toggle" data-toggle="dropdown">
             your cart
-            <span class="price">$<span class="total"><?php echo $total; ?></span>.00</span>
+            <span class="price">$<span class="total"><?php echo $total; ?></span></span>
         </a>
         <div class="amount" style="position: absolute; color: red; top:5px;left: 30px; font-weight: bold; width: 15px;height: 15px; background-color: yellow; text-align: center; border-radius: 50px;"><?php echo $totalAmount ?>
             
@@ -31,14 +31,14 @@
                         <a href="javascript:void(0)" class="remove-cart-item" onclick="delCart(<?= $key ?>)"" >&times;</a>
                         <h4><?php echo $value['proName'] ?></h4>
                         <div class="mini-cart-qty">Qty:<?php echo $value['sl'] ?></div>
-                        <div class="mini-cart-price">$ <?php echo $value['sl'] * $value['price']  ?>.00</div>
+                        <div class="mini-cart-price">$ <?php echo $value['sl'] * $value['price']  ?></div>
                     </div>
                 </div>
             <?php }} ?>
             </div><!-- /.cart-listing -->
-            <div class="mini-cart-subtotal">Total: <span class="price">$<span class="total"><?php echo $total; ?></span>.00</span></div>
+            <div class="mini-cart-subtotal">Total: <span class="price">$<span class="total"><?php echo $total; ?></span></span></div>
             <div class="checkout-btn">
-                <a href="#" class="btn btn-default btn-md fwb">CHECK OUT</a>
+                <a href="<?= Yii::$app->homeUrl.'shopping/checkout'?>" class="btn btn-default btn-md fwb">CHECK OUT</a>
             </div>
         </div>
     </div>

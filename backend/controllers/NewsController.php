@@ -68,14 +68,11 @@ class NewsController extends Controller
         $model = new News();
         $getNewsCategory = new NewsCategory();
         $data= $getNewsCategory->getNewsCategory();
-//        $User = new User();
-//        $getUser = $User->getAllUser;
-//        $model->userId = ;
-//        echo "<pre>";
-//        var_dump();
-//        die;
-        $model->dateCreate= time();
-        $model->updateAt= time();
+        $user=$model->userId=Yii::$app->user->identity->id;
+        $author=$model->author=Yii::$app->user->identity->username;
+        $time=time();
+        $model->dateCreate=$time;
+        $model->updateAt= $time;
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->newsId]);
