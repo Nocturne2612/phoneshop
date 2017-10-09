@@ -5,12 +5,14 @@ use yii\helpers\Html;
     <div class="container">
         <div class="topbar-left">
             <ul class="topbar-nav clearfix">
-                <li><span class="phone">0(123) 456 789</span></li>
-                <li><span class="email">info@plazathemes.com</span></li>
+                <li><span class="phone">0973216794</span></li>
+                <li><span class="email">Buixuanthangcntt@gmail.com</span></li>
             </ul>
         </div>
         <div class="topbar-right">
             <ul class="topbar-nav clearfix">
+                <li><a class="glyphicon glyphicon-usd" title="Checkout" href="<?= Yii::$app->homeUrl.'shopping/checkout'?>"> Checkout</a></li>
+                <li><a class="glyphicon glyphicon-shopping-cart" title="My Cart" href="<?= Yii::$app->homeUrl.'shopping/viewcart'?>"> My Cart</a></li>
                 <?php 
                 if(Yii::$app->user->isGuest){
 
@@ -24,13 +26,11 @@ use yii\helpers\Html;
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a title="My Account" href="account.html">My Account</a></li>
                         <li><a title="My Wishlist" href="wishlist.html">My Wishlist</a></li>
-                        <li><a title="My Cart" href="<?= Yii::$app->homeUrl.'shopping/viewcart'?>">My Cart</a></li>
-                        <li><a title="Checkout" href="checkout.html">Checkout</a></li>
                         <li><a title="Testimonial" href="testimonial.html">Testimonial</a></li>
                     </ul>
                 </li>
                 <?php } ?>
-                <li class="dropdown">
+                <!-- <li class="dropdown">
                     <a href="#" class="currency dropdown-toggle" data-toggle="dropdown">USD</a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a href="#">Euro</a></li>
@@ -43,7 +43,7 @@ use yii\helpers\Html;
                         <li><a href="#"><img src="frontend/web/common/images/flag-us.png" alt=""> &nbsp;English</a></li>
                         <li><a href="#"><img src="frontend/web/common/images/flag-spain.png" alt=""> &nbsp;Spanish</a></li>
                     </ul>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div><!-- /.container -->

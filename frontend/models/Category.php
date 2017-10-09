@@ -60,7 +60,7 @@ class Category extends \yii\db\ActiveRecord
   
     //main menu
     public function getCategory(){
-        $data = category::find()->asArray()->where( ['parentId' => null])->all();
+        $data = category::find()->asArray()->where( ['parentId' => 0])->all();
         
         return $data;
     }

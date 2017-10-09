@@ -18,6 +18,7 @@ class AppAsset extends AssetBundle
         'frontend/web/common/css/nivo-slider.css',
         'frontend/web/common/css/animate.css',
         'frontend/web/common/css/owl.carousel.css',
+        'frontend/web/common/css/jquery-ui.css',
         'frontend/web/common/css/style.css',
         'frontend/web/common/css/responsive.css',
         'http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic,800',
@@ -27,6 +28,8 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'http://code.jquery.com/jquery-1.11.0.min.js',
+        'frontend/web/common/js/jquery-ui.min.js',
+        'frontend/web/common/js/slider.js',
         'frontend/web/common/js/bootstrap.min.js',
         'frontend/web/common/js/cloud-zoom.js',
         'frontend/web/common/js/main.js',
@@ -34,7 +37,7 @@ class AppAsset extends AssetBundle
         'frontend/web/common/js/jquery.bxslider.min.js',
         'frontend/web/common/js/thumbnailDetail.js',
         'frontend/web/common/js/jquery.nivo.slider.pack.js',
-        'frontend/web/common/js/slider.js',
+        
         // 'frontend/web/common/js/common.js',
         
         

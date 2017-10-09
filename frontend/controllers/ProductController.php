@@ -1,5 +1,6 @@
 <?php
 namespace frontend\controllers;
+use Yii;
 use frontend\models\Product;
 use frontend\models\Category;
 
@@ -36,10 +37,8 @@ class ProductController extends \yii\web\Controller
 		// print_r($pages);
 		// die();
  
-        // $data = $modelpro->getProductByCat($listid);
     	return $this->render('listProduct',[
             "data"=>$data,
-            // 'dataCat'=>$dataCat[0]["catName"],
             "pages"=>$pages
 
         ]);
@@ -48,10 +47,18 @@ class ProductController extends \yii\web\Controller
     {
         $data= new Product();
         $data=$data->getProductById($id);
- 
-        
-
         return $this->render('detail',['data'=>$data]);
+    }
+    public function actionSearchprice()
+    {
+        $first = Yii::$app->getRequest()->getQueryParam('first');
+        $last = Yii::$app->getRequest()->getQueryParam('last');
+        // echo $last;
+        // die();
+        $data= new Product();
+        $data=$data->getProductBySearchPrice($first,$last);
+        // $pages= $data->getPagerProduct();
+        return $this->render('listsearch',['data'=>$data]);
     }
 
 }

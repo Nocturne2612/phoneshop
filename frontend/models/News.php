@@ -3,6 +3,8 @@
 namespace frontend\models;
 
 use Yii;
+use yii\db\Expression;
+use yii\data\Pagination;
 
 /**
  * This is the model class for table "news".
@@ -59,5 +61,24 @@ class News extends \yii\db\ActiveRecord
             'updateAt' => 'Update At',
         ];
     }
+    public function getNewByCatNewId($id){
+        $pages = $this->getPagerNew($id); 
+        $data =  $data = News::find()->asArray()->where('newsCatId IN ('.$id.')')->offset($pages->offset)->limit($pages->limit)->all();
+        return $data; 
+    }
+    public function getPagerNew($catId){
+
+        // lấy sp nằm trong cat id con(vi du lấy tất cả sản phẩm của iphone 6)
+        $data = News::find()->asArray()->where('newsCatId IN ('.$catId.')')->all();
+
+        //tổng số sản phẩm 
+        $pages = new Pagination(['totalCount' => count($data),'pageSize' => \Yii::$app->params['pageSize']]);
+        return $pages; // giá trị pageSize nằm trong params fontend/config/main.php (giá trị số product hiện tại để là 4)
+    }
+    //lấy deltail new
+     public function getNewtById($newId){
+         $data = News::find()->asArray()->where('newsId=:newsId',['newsId'=>$newId])->one();
+         return $data;
+     }
 
 }

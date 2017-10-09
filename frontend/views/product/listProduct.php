@@ -43,9 +43,9 @@ use yii\widgets\LinkPager;
 								<div class="content-shopby">
 									<div id="slider-range"></div>
 									<div id="search_pr">
-										<input type="text" name="first_price" class="form-control">
-										<input type="text" name="last_price" class="form-control">
-										<button id="search_price" name="search_price" type="button" class="btn btn-default">SHOW</button>
+										<input type="text" name="first_price" id="first_price" class="form-control">
+										<input type="text" name="last_price" id="last_price" class="form-control">
+										<button id="search_price" name="search_price" type="button" class="btn btn-default" onclick="searchPrice()">SHOW</button>
 									</div>
 								</div>
 							</div>
@@ -165,11 +165,11 @@ use yii\widgets\LinkPager;
 										<div class="price-box">
 											<p class="special-price">
 												<span class="price-label">Special Price:</span>
-												<span class="price" id="specialPrice_<?=$value['proId']?>">$<?php echo $value["saleOf"] ?>.00</span>
+												<span class="price" id="specialPrice_<?=$value['proId']?>">$<?php echo $value["saleOf"] ?></span>
 											</p>
 											<p class="old-price">
 												<span class="price-label">Regular Price: </span>
-												<span class="price" id="regularPrice_<?=$value['proId']?>">$<?php echo $value["price"] ?>.00</span>
+												<span class="price" id="regularPrice_<?=$value['proId']?>">$<?php echo $value["price"] ?></span>
 											</p>
 										</div>
 										<div class="ratings">

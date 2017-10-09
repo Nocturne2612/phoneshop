@@ -76,6 +76,9 @@ AppAsset::register($this);
                                             <li>
                                                 <a href="<?php echo Yii::$app->homeUrl . 'order' ?>">Danh sách đơn hàng</a>
                                             </li>
+                                            <li>
+                                                <a href="<?php echo Yii::$app->homeUrl . 'order-detail' ?>">Danh sách chi chiết đơn hàng</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li>
@@ -270,7 +273,7 @@ AppAsset::register($this);
               </div>
         <div class="modal-footer">
           <!-- <button type="button" class="btn btn-default" data-dismiss="modal">OK</button> -->
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
   </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
