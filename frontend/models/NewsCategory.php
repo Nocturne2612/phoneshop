@@ -43,12 +43,12 @@ class NewsCategory extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'newsCatId' => 'News Cat ID',
-            'newsCatName' => 'News Cat Name',
-            'parentId' => 'Parent ID',
-            'status' => 'Status',
-            'dateCreate' => 'Date Create',
-            'updateAt' => 'Update At',
+            'newsCatId' => 'ID',
+            'newsCatName' => 'Danh mục tin tức',
+            'parentId' => 'Danh mục cha',
+            'status' => 'Trạng thái',
+            'dateCreate' => 'Ngày tạo',
+            'updateAt' => 'Ngày cập nhật',
         ];
     }
 

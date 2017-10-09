@@ -63,12 +63,16 @@ class NewsCategoryController extends Controller
      */
     public function actionCreate()
     {
+
         $model = new NewsCategory();
         $data = $model->getNewsCategory();
         $model->dateCreate = time();
+//        $model->scenario = 'thucthi';
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->newsCatId]);
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if($model->save(false)){
+                return $this->redirect(['view', 'id' => $model->newsCatId]);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,

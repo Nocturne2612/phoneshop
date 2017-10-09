@@ -34,7 +34,6 @@ AppAsset::register($this);
 
     <?php $this->beginBody() ?>
     <div class="header">
-
         <?= topbarWidget::widget() ?>
         <!-- /.topbar -->
         <div class="header-bottom">
@@ -150,7 +149,7 @@ AppAsset::register($this);
 
 <?php $this->endBody() ?>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="shoppingcart">
+<div class="modal fade" tabindex="-1" role="dialog" id="shoppingcart" style="z-index: 9999;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -178,6 +177,7 @@ AppAsset::register($this);
 </div><!-- /.modal -->
 
 <script type="text/javascript">
+    var urlBase = "http://localhost/phoneshop/";
     function addWishlist(id){
         $.get('<?php echo Yii::$app->homeUrl.'wishlist/add' ?>',{'id':id},function(data){
             alert("Thêm Thành Công Vào Wishlist")
@@ -185,46 +185,70 @@ AppAsset::register($this);
     }
 
     function addCart(id){
-       
-        img = $('#img_'+ id).attr("src");
-        // alert(img);
-        $('#imgPreview').attr({
-            'src':img,
-        });
 
+        qty = $("#Qty").val();
+        if(qty<=0){
+            alert('Số lượng phải lớn hơn 0');
+            
+        }else{
+            img = $('#img_'+ id).attr("src");
+            // alert(img);
+            $('#imgPreview').attr({
+                'src':img,
+            });
+
+            namePro= $('#txtName_'+ id).text();
+            $('#nameProduct').text(namePro);
+
+            specialPrice= $('#specialPrice_'+ id).text();
+            $('#specialPrice').text(specialPrice);
+
+            regularPrice= $('#regularPrice_'+ id).text();
+            $('#regularPrice').text(regularPrice);
+
+            $('#shoppingcart').modal();
+                $.get('<?php echo Yii::$app->homeUrl.'shopping/addcart/?id=' ?>'+id+"&qty="+qty,function(data){
+                val=data.split("-");
+                $(".amount").text(val[0]);
+                $(".total").text(val[1]);
+                // $("#qtyCart").load("http://localhost:8080/PH1704LM/yii/product/detail/"+id+" #qtyCart");
+                location.reload();
+            });
+        }
         
-
-        namePro= $('#txtName_'+ id).text();
-        $('#nameProduct').text(namePro);
-
-        specialPrice= $('#specialPrice_'+ id).text();
-        $('#specialPrice').text(specialPrice);
-
-        regularPrice= $('#regularPrice_'+ id).text();
-        $('#regularPrice').text(regularPrice);
-
-        $('#shoppingcart').modal();
-
-        $.get('<?php echo Yii::$app->homeUrl.'shopping/addcart' ?>',{'id':id},function(data){
-            val=data.split("-");
-            $(".amount").text(val[0]);
-            $(".total").text(val[1]);
-            // $("#qtyCart").load("http://localhost:8080/PH1704LM/yii/product/detail/"+id+" #qtyCart");
-            location.reload();
-            
-            
-        });
     }
     function delCart(id){
-         $.get('<?php echo Yii::$app->homeUrl.'shopping/delcart' ?>',{'id':id},function(data){
+         // $.get('http://localhost:8080/PH1704LM/yii/product/addcart/'+id+"?qty="+qty, function(data) {
+        
+
+        $.get('<?php echo Yii::$app->homeUrl.'shopping/delcart' ?>',{'id':id},function(data){
            //xoa sp trong cart
             val=data.split("-"); // tách làm 2 phần của giá trị echo ($cartInfo); trong shopping/cart.php
             $(".amount").text(val[0]); // gán giá trị thứ nhất
             $(".total").text(val[1]); // gán giá trị thứ hai
             $("#item_"+id).remove();
-            
+            location.reload();
         });
     }
+
+    function updateCart(id){
+        amount= $('#amount-'+id).val();
+        if(amount<=0){
+             alert('Số lượng phải lớn hơn 0');
+        }else{
+            $.get(urlBase+'shopping/updatecart', {'id': id,'amount':amount}, function(data) {
+           //xoa sp trong cart
+            val=data.split("-"); // tách làm 2 phần của giá trị echo ($cartInfo); trong shopping/cart.php
+            $(".amount").text(val[0]); // gán giá trị thứ nhất
+            $(".total").text(val[1]); // gán giá trị thứ hai
+            $("#item_"+id).remove();
+            // $("#listCart").load(urlBase+'shopping/viewcart','#listCart');
+            location.reload();
+            });       
+        }
+        
+    }
+
 </script>
 
 

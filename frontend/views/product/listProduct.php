@@ -156,7 +156,7 @@ use yii\widgets\LinkPager;
 												<li><a href="javascript:void(0)" class="link-quickview">Quick View</a></li>
 												<li><a href="javascript:void(0)" class="link-wishlist" onclick="addWishlist(<?= $value["proId"] ?>)">Add to Wishlist</a></li>
 												<li><a href="javascript:void(0)" class="link-compare">Add to Compare</a></li>
-												<li><a href="javascript:void(0)" class="link-cart" onclick="addCart(<?= $value["proId"] ?>)">Add to Cart</a></li>
+												
 											</ul>
 										</div>
 									</div>
