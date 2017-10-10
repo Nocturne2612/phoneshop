@@ -21,7 +21,7 @@ class AppAsset extends AssetBundle
         'css/main.css',
     ];
     public $js = [
-        'vendors/jquery/dist/jquery.min.js',
+        // 'vendors/jquery/dist/jquery.min.js',
         'vendors/bootstrap/dist/js/bootstrap.min.js',
         'vendors/fastclick/lib/fastclick.js',
         'vendors/nprogress/nprogress.js',

@@ -60,5 +60,12 @@ class ProductController extends \yii\web\Controller
         // $pages= $data->getPagerProduct();
         return $this->render('listsearch',['data'=>$data]);
     }
+    public function actionSearch()
+    {
+        $search = Yii::$app->getRequest()->getQueryParam('search');
+        $data= new Product();
+        $data=$data->getProductBySearchName($search);
+        return $this->render('listsearch',['data'=>$data]);
+    }
 
 }

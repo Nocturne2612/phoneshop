@@ -13,7 +13,7 @@
                             <div class="sale-icon"><span>sale</span></div>
                         </div>
                         <a href="<?= Yii::$app->homeUrl.'product/detail?id='.$value['proId']?>" title="<?php echo $value["proName"] ?>" class="product-image">
-                            <img id="img_<?=$value['proId']?>" width="195" height="231" src="<?php echo $value["images"] ?>" alt="<?php echo $value["proName"] ?>" />
+                            <img id="img_<?=$value['proId']?>" width="195" height="231" src="<?php echo Yii::$app->homeUrl. $value["images"] ?>" alt="<?php echo $value["proName"] ?>" />
                         </a>
                         <div class="box-hover">
                             <ul class="add-to-links">
@@ -29,11 +29,11 @@
                         <div class="price-box">
                             <p class="special-price">
                                 <span class="price-label" id="specialPrice_<?=$value['proId']?>">Special Price</span>
-                                <span class="price">$<?php echo $value["saleOf"] ?>.00</span>
+                                <span class="price">$<?php echo $value["saleOf"] ?></span>
                             </p>
                             <p class="old-price">
                                 <span class="price-label">Regular Price: </span>
-                                <span id="regularPrice_<?=$value['proId']?>" class="price">$<?php echo $value["price"] ?>.00</span>
+                                <span id="regularPrice_<?=$value['proId']?>" class="price">$<?php echo $value["price"] ?></span>
                             </p>
                         </div>
                         <div class="ratings">

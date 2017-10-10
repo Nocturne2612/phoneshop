@@ -3,7 +3,7 @@
 use yii\widgets\LinkPager;
 
 // echo "<pre>";
-// print_r($pages);
+// print_r($data);
 // die();
 ?>
 <div class="breadcrumbs">
@@ -137,7 +137,8 @@ use yii\widgets\LinkPager;
 				</div><!-- /.toolbar -->
 				<div class="row products">
 
-					<?php 
+					<?php
+					if (is_array($data) || is_object($data)){
 					foreach ($data as  $value) {
 						
 						?>
@@ -149,7 +150,7 @@ use yii\widgets\LinkPager;
 											<div class='new-icon'><span>new</span></div>
 										</div>
 										<a href="<?= Yii::$app->homeUrl.'product/detail?id='.$value['proId']?>" title="<?php echo $value["proName"] ?>" class="product-image">
-											<img width="195" height="231" src="<?php echo $value["images"] ?>" id="img_<?=$value['proId']?>" alt="<?php echo $value["proName"] ?>" />
+											<img width="195" height="231" src="<?php echo Yii::$app->homeUrl. $value["images"] ?>" id="img_<?=$value['proId']?>" alt="<?php echo $value["proName"] ?>" />
 										</a>
 										<div class="box-hover">
 											<ul class="add-to-links">
@@ -183,7 +184,7 @@ use yii\widgets\LinkPager;
 							</div>
 						</div>
 						
-						<?php } ?>
+						<?php }}  ?>
 					</div><!-- /.product -->
 
 					<!-- phân trang mặc định của yii2 -->

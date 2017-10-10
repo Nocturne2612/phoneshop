@@ -287,6 +287,15 @@ AppAsset::register($this);
         });
         
     }
+    function search(){
+        search= $('#search').val();
+        $.get('<?php echo Yii::$app->homeUrl.'product/search?search='?>'+search,function(data){
+            var url = '<?php echo Yii::$app->homeUrl.'product/search?search='?>'+search;
+            $(location).attr('href', url);
+        });
+         
+       
+    }
     
 
 </script>

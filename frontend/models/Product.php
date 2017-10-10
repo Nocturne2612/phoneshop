@@ -113,6 +113,15 @@ class Product extends \yii\db\ActiveRecord
                 ->all();
         return $data;
     }
+
+    public function getProductBySearchName($search){
+        // $data = 'SELECT * FROM product WHERE MATCH(proName) against("$search")';
+        $data = Product::find()
+        ->asArray()
+        ->where(['LIKE', 'proName', $search])
+        ->all();
+        return $data;
+    }
    
      
 }

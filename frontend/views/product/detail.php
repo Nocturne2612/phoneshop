@@ -24,14 +24,14 @@
 							<div class="product-img-box">
                                 <p class="product-image">
                                     <a href="<?php echo $data['images'] ?>" class="cloud-zoom" id="ma-zoom1">
-                                        <img width="300" height="409" src="<?php echo $data['images'] ?>" alt="<?php echo $data['proName'] ?>" title="<?php echo $data['proName'] ?>" />
+                                        <img width="300" height="409" src="<?php echo Yii::$app->homeUrl. $data["images"] ?>" alt="<?php echo $data['proName'] ?>" title="<?php echo $data['proName'] ?>" />
                                     </a>
                                 </p>
                                 <div class="more-views thumbnail-container">
                                     <ul class="bxslider">
                                         <li class="thumbnail-item">
                                             <a href="javascript:void(0)" class="cloud-zoom-gallery" title="<?php echo $data['proName'] ?>" name="images/products/1.jpg" rel="useZoom: 'ma-zoom1', smallImage: 'images/products/1.jpg'">
-                                                <img src="<?php echo $data['images'] ?>" alt="<?php echo $data['proName'] ?>" />
+                                                <img src="<?php echo Yii::$app->homeUrl. $data["images"] ?>" alt="<?php echo $data['proName'] ?>" />
                                             </a>
                                         </li>
                                        

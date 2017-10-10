@@ -4,6 +4,8 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use backend\models\Factory;
 use backend\models\Category;
+use yii\widgets\Pjax;
+
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\search\ProductSearch */
@@ -20,6 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Tạo mới', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+    <?php Pjax::Begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -80,4 +83,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    <?php Pjax::end(); ?>
 </div>
