@@ -56,7 +56,7 @@
             ?>
                 <ul class="sub-menu">
                     <?php  
-                        foreach ($catSubNew as $val) {
+                        foreach ($catNew as $val) {
                     ?>
                         <li><a href="<?=Yii::$app->homeUrl?>news/listnew?id=<?php echo $val["newsCatId"] ?>"><?php echo $val["newsCatName"] ?></a></li>
                     <?php } ?>
