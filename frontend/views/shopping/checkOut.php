@@ -42,7 +42,7 @@ use yii\widgets\ActiveForm;
  							<tr>
  								<td class="text-center"><?php echo $i++; ?></td>
  								<td><a class="product-image" title="Primis in faucibus" href="#">
- 									<img alt="Primis in faucibus" src="<?php echo $value['images'] ?>">
+ 									<img alt="Primis in faucibus" src="<?php echo Yii::$app->homeUrl. $value["images"] ?>">
  								</a></td>
  								<td>
  									<a href="<?php echo Yii::$app->homeUrl.'product/detail?id='.$key  ?>"><?php echo $value['proName'] ?></a>
@@ -53,7 +53,7 @@ use yii\widgets\ActiveForm;
  									<td class="qty" style="text-align: center;">	
  										<?php echo $value['sl'] ?>	
  									</td>
- 									<td class="subtotal">$<?php echo $value['price'] ?>.00</td>
+ 									<td class="subtotal">$<?php echo $value['price'] ?></td>
  									<td class="grandtotal">$<?php echo $value['price'] * $value['sl'];
  									 $subtotal +=$value['price'] * $value['sl'];?></td>
  								</tr>

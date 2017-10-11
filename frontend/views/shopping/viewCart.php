@@ -45,7 +45,7 @@
  							<tr>
  								<td class="text-center"><a class="btn-remove" href="javascript:void(0)" onclick="delCart(<?php echo $key ?>)"><span class="fa fa-trash-o"></span></a></td>
  								<td><a class="product-image" title="Primis in faucibus" href="#">
- 									<img alt="Primis in faucibus" src="<?php echo $value['images'] ?>">
+ 									<img alt="Primis in faucibus" src="<?php echo Yii::$app->homeUrl. $value["images"] ?>">
  								</a></td>
  								<td>
  									<a href="<?php echo Yii::$app->homeUrl.'product/detail?id='.$key  ?>"><?php echo $value['proName'] ?></a>

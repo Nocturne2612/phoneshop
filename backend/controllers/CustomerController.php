@@ -3,18 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\News;
-use backend\models\NewsCategory;
-use backend\models\User;
-use backend\models\search\NewsSearch;
+use backend\models\Customer;
+use backend\models\search\CustomerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * NewsController implements the CRUD actions for News model.
+ * CustomerController implements the CRUD actions for Customer model.
  */
-class NewsController extends Controller
+class CustomerController extends Controller
 {
     /**
      * @inheritdoc
@@ -32,12 +30,12 @@ class NewsController extends Controller
     }
 
     /**
-     * Lists all News models.
+     * Lists all Customer models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new NewsSearch();
+        $searchModel = new CustomerSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -47,49 +45,37 @@ class NewsController extends Controller
     }
 
     /**
-     * Displays a single News model.
+     * Displays a single Customer model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
-//        echo '<pre>';
-//        var_dump('ádasfa');
-//        die;
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new News model.
+     * Creates a new Customer model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new News();
-        $getNewsCategory = new NewsCategory();
-        $data= $getNewsCategory->getNewsCategory();
-        $user=$model->userId=Yii::$app->user->identity->id;
-        $author=$model->author=Yii::$app->user->identity->username;
-        $time=time();
-        $model->dateCreate=$time;
-        $model->updateAt= $time;
-        
+        $model = new Customer();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->newsId]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'data' => $data,
             ]);
         }
     }
 
     /**
-     * Updates an existing News model.
+     * Updates an existing Customer model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -97,22 +83,18 @@ class NewsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $getNewsCategory = new NewsCategory();
-        $data= $getNewsCategory->getNewsCategory();
-        $model->updateAt= time();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->newsId]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'data' => $data,
             ]);
         }
     }
 
     /**
-     * Deletes an existing News model.
+     * Deletes an existing Customer model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -125,15 +107,15 @@ class NewsController extends Controller
     }
 
     /**
-     * Finds the News model based on its primary key value.
+     * Finds the Customer model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return News the loaded model
+     * @return Customer the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = News::findOne($id)) !== null) {
+        if (($model = Customer::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

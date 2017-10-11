@@ -91,6 +91,9 @@ class ProductController extends Controller {
        //  }
         if ($model->load(Yii::$app->request->post())&& $model->validate()) {
             $data = Yii::$app->request->post();
+            $img=$data["Product"]["images"];
+            $result = str_replace('http://localhost/phoneshop', '', $img);
+            $model->images=$result;
             $model->startSale = date("Y-m-d", strtotime($data["Product"]["startSale"])); // đổi về định dạng d-m-y
             $model->endSale = date("Y-m-d", strtotime($data["Product"]["endSale"]));
             if($model->save(false))
@@ -127,6 +130,9 @@ class ProductController extends Controller {
 
        if ($model->load(Yii::$app->request->post())&& $model->validate()) {
             $data = Yii::$app->request->post();
+            $img=$data["Product"]["images"];
+            $result = str_replace('http://localhost/phoneshop', '', $img);
+            $model->images=$result;
             $model->startSale = date("Y-m-d", strtotime($data["Product"]["startSale"])); // đổi về định dạng d-m-y
             $model->endSale = date("Y-m-d", strtotime($data["Product"]["endSale"]));
             if($model->save(false)){

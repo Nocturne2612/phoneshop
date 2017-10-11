@@ -7,7 +7,6 @@ use yii\widgets\ActiveForm;
 /* @var $model frontend\models\District */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
 <div class="district-form">
 
     <?php $form = ActiveForm::begin(); ?>

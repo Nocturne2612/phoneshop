@@ -149,7 +149,7 @@ use yii\widgets\LinkPager;
 											<div class='new-icon'><span>new</span></div>
 										</div>
 										<a href="<?= Yii::$app->homeUrl.'product/detail?id='.$value['proId']?>" title="<?php echo $value["proName"] ?>" class="product-image">
-											<img width="195" height="231" src="<?php echo $value["images"] ?>" id="img_<?=$value['proId']?>" alt="<?php echo $value["proName"] ?>" />
+											<img width="195" height="231" src="<?php echo Yii::$app->homeUrl. $value["images"] ?>" id="img_<?=$value['proId']?>" alt="<?php echo $value["proName"] ?>" />
 										</a>
 										<div class="box-hover">
 											<ul class="add-to-links">

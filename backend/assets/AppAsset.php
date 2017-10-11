@@ -9,7 +9,7 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'vendors/bootstrap/dist/css/bootstrap.min.css',
+        // 'vendors/bootstrap/dist/css/bootstrap.min.css',
         'vendors/font-awesome/css/font-awesome.min.css',
         'vendors/nprogress/nprogress.css',
         'vendors/iCheck/skins/flat/green.css',
@@ -21,7 +21,7 @@ class AppAsset extends AssetBundle
         'css/main.css',
     ];
     public $js = [
-        'vendors/jquery/dist/jquery.min.js',
+        // 'vendors/jquery/dist/jquery.min.js',
         'vendors/bootstrap/dist/js/bootstrap.min.js',
         'vendors/fastclick/lib/fastclick.js',
         'vendors/nprogress/nprogress.js',

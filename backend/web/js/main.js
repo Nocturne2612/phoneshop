@@ -26,9 +26,9 @@ $(document).ready(function(){
     image_advtab: true,
     menubar: false,
     toolbar_items_size: 'small',
-        relative_urls: false,
-        remove_script_host : false,
-        external_filemanager_path:host[0]+"file/",
+    relative_urls: true,
+    remove_script_host : true,
+    external_filemanager_path:host[0]+"file/",
     filemanager_title:"Quan ly file" ,
     external_plugins: { "filemanager" : host[0]+"file/plugin.min.js"},
 });

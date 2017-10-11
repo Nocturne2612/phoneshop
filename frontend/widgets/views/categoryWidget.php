@@ -14,9 +14,8 @@
     $a='/phoneshop/';
     $b= $_SERVER['REQUEST_URI'];
     $c='style="display:none;"';
-
      ?>
-    <div class="mega-menu-category " <?php if($a != $b )  echo $c    ?>>
+    <div class="mega-menu-category " <?php if($a != $b) echo $c ?> >
         <ul class="nav">
             <?php  
                 foreach ($catParent as $value) {

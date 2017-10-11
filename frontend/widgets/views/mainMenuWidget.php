@@ -6,6 +6,7 @@
     $catNULL = $cat->getCategory();
     $catParent = $cat->getCategoryBy();
 
+
     $new = new NewsCategory();
     $catNew = $new->getNewsBy();
     // $catNewNull = $new->getNews();
@@ -58,9 +59,8 @@
                         foreach ($catSubNew as $val) {
                     ?>
                         <li><a href="<?=Yii::$app->homeUrl?>news/listnew?id=<?php echo $val["newsCatId"] ?>"><?php echo $val["newsCatName"] ?></a></li>
-                    <?php } ?> 
+                    <?php } ?>
                 </ul>
-
             <?php } ?>
 
         </li>

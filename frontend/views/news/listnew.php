@@ -24,7 +24,7 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="images-container">
-                                        <a class="product-image" title="Fusce aliquam" href="<?=Yii::$app->homeUrl?>news/detailnew?id=<?php echo $value["newsId"] ?>" rel="author"><img alt="Fusce aliquam" src="<?php echo $value['image'] ?>"></a>
+                                        <a class="product-image" title="Fusce aliquam" href="<?=Yii::$app->homeUrl?>news/detailnew?id=<?php echo $value["newsId"] ?>" rel="author"><img alt="Fusce aliquam" src="<?php echo Yii::$app->homeUrl. $value["image"] ?>"></a>
                                     </div>
                                 </div>
                                 <div class="col-sm-9">

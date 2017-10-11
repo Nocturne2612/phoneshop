@@ -27,7 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <div class="form-group">
                     <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                   <button type="button" class="btn btn-primary"> <a href="<?php echo Yii::$app->homeUrl .'site/signup'?>" style="color: white;">Signup</a></button>
                 </div>
+                
 
             <?php ActiveForm::end(); ?>
         </div>

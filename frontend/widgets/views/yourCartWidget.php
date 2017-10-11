@@ -26,7 +26,7 @@
                 if (is_array($infoCart) || is_object($infoCart)){
                 foreach (($infoCart) as $key => $value) { ?>
                 <div class="media" id="item_<?= $key ?>" >
-                    <div class="media-left"><a href="#"><img  id="#load" src="<?php echo $value['images'] ?>" class="img-responsive" alt="<?php echo $value['proName'] ?>"></a></div>
+                    <div class="media-left"><a href="#"><img  id="#load" src="<?php echo Yii::$app->homeUrl. $value["images"] ?>" class="img-responsive" alt="<?php echo $value['proName'] ?>"></a></div>
                     <div class="media-body">
                         <a href="javascript:void(0)" class="remove-cart-item" onclick="delCart(<?= $key ?>)"" >&times;</a>
                         <h4><?php echo $value['proName'] ?></h4>
