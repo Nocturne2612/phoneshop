@@ -63,11 +63,14 @@ class Product extends \yii\db\ActiveRecord
     }
 
     public function getProductBy($type,$limit=7){
+        $order=SORT_ASC;
+        $data = Product::find()
+        ->asArray()->orderBy(['proId' => $order])
+        ->limit($limit)->all();
+        return $data;
+    }
+    public function getProductByDesc($type,$limit=7){
         $order = SORT_DESC;
-        if($type)
-        {
-            $order=SORT_ASC;
-        }
         $data = Product::find()
         ->asArray()->orderBy(['proId' => $order])
         ->limit($limit)->all();

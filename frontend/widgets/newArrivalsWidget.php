@@ -18,7 +18,7 @@ class newArrivalsWidget extends Widget
     {
     	$type = $this->type;
     	$product = new Product();
-    	$data = $product->getProductBy($type);
+    	$data = $product->getProductByDesc($type);
         return $this->render('newArrivalsWidget',['type'=>$this->type,'data'=>$data]);
     }
 }
