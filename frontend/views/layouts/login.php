@@ -39,7 +39,7 @@ AppAsset::register($this);
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3">
-                            <a href="<?php Yii::$app->homeUrl ?>" class="logo"><img src="frontend/web/common/images/logo.png" alt=""></a>
+                            <a href="<?php Yii::$app->homeUrl ?>" class="logo"><img src="<?php Yii::$app->homeUrl ?>/phoneshop/frontend/web/common/images/logo.png"  alt=""></a>
                         </div>
                         <div class="col-md-9">
                             <div class="support-client">
